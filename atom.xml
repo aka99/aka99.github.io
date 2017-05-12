@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>信息安全实践流水账</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://jfsec.org/"/>
+  <updated>2017-05-12T08:12:28.000Z</updated>
+  <id>https://jfsec.org/</id>
+  
+  <author>
+    <name>Tony Zhou</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>某热门读书APP音视频离线下载脚本</title>
+    <link href="https://jfsec.org/2017/05/02/2017-05-2-DuShuHui/"/>
+    <id>https://jfsec.org/2017/05/02/2017-05-2-DuShuHui/</id>
+    <published>2017-05-02T09:38:35.000Z</published>
+    <updated>2017-05-12T08:12:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>樊登读书会APP,有声阅读神器,用户付费后可每年获得50本书籍的精华解读，以图文、音频、视频三种类型提供线上服务。</p>
+<p>买了会员后，只能使用App听，有点不方便，需求是离线下载PC上自习选择听或看，通过分析数据包，发现可以离线下载。</p>
+<a id="more"></a>
+<p>声明：此脚本仅供樊登读书会正式会员学习使用，不得用于其它用途。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="comment"># 声明：此脚本仅供樊登读书会正式会员学习使用，不得用于其它用途。</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> urlparse</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(saved_file, url, params, headers)</span>:</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(<span class="string">'downloads'</span>):</div><div class="line">        os.mkdir(<span class="string">'downloads'</span>)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">'downloads/'</span>+saved_file):</div><div class="line">        response = session.get(url, params=params, headers=headers)</div><div class="line">        chunk_size = <span class="number">1024</span></div><div class="line">        <span class="keyword">with</span> open(<span class="string">'downloads/'</span>+saved_file, <span class="string">'wb'</span>) <span class="keyword">as</span> fd:</div><div class="line">            <span class="keyword">for</span> chunk <span class="keyword">in</span> response.iter_content(chunk_size):</div><div class="line">                fd.write(chunk)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_audio</span><span class="params">(token)</span>:</span></div><div class="line">    rawBody = <span class="string">"&#123;\"order\":1,\"pageSize\":1000,\"token\":\"%s\",\"page\":1&#125;"</span> % token</div><div class="line">    response = session.post(<span class="string">"https://api.dushu.io/books"</span>, data=rawBody, headers=headers)</div><div class="line"></div><div class="line">    books = response.json()[<span class="string">'books'</span>]</div><div class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> books:</div><div class="line">        title = b[<span class="string">'title'</span>]</div><div class="line">        id = b[<span class="string">'id'</span>]</div><div class="line">        <span class="keyword">print</span> title</div><div class="line"></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            fragmentId = b[<span class="string">'contents'</span>][<span class="number">1</span>][<span class="string">'fragmentId'</span>]</div><div class="line">            mediaDuration = b[<span class="string">'contents'</span>][<span class="number">1</span>][<span class="string">'mediaDuration'</span>]</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">continue</span></div><div class="line"></div><div class="line">        rawBody = <span class="string">"&#123;\"fragmentId\":%s,\"token\":\"%s\"&#125;"</span> % (fragmentId, token)</div><div class="line">        response = session.post(<span class="string">"https://api.dushu.io/fragment/content"</span>, data=rawBody, headers=headers)</div><div class="line">        mediaUrls = response.json()[<span class="string">'mediaUrls'</span>][<span class="number">1</span>]</div><div class="line">        <span class="comment"># print mediaUrls</span></div><div class="line"></div><div class="line">        file_name = str(id)+<span class="string">'_'</span>+title+<span class="string">'.mp3'</span></div><div class="line">        download(file_name, mediaUrls, &#123;&#125;, headers)                      </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_video</span><span class="params">(token)</span>:</span></div><div class="line">    rawBody = <span class="string">"&#123;\"order\":1,\"pageSize\":1000,\"token\":\"%s\",\"page\":1&#125;"</span> % token</div><div class="line">    response = session.post(<span class="string">"https://api.dushu.io/books"</span>, data=rawBody, headers=headers)</div><div class="line"></div><div class="line">    books = response.json()[<span class="string">'books'</span>]</div><div class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> books:</div><div class="line">        title = b[<span class="string">'title'</span>]</div><div class="line">        <span class="keyword">print</span> title</div><div class="line">        id = b[<span class="string">'id'</span>]</div><div class="line">        </div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            fragmentId = b[<span class="string">'contents'</span>][<span class="number">2</span>][<span class="string">'fragmentId'</span>]</div><div class="line">            mediaDuration = b[<span class="string">'contents'</span>][<span class="number">2</span>][<span class="string">'mediaDuration'</span>]</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">continue</span></div><div class="line"></div><div class="line">        rawBody = <span class="string">"&#123;\"fragmentId\":%s,\"token\":\"%s\"&#125;"</span> % (fragmentId, token)</div><div class="line">        response = session.post(<span class="string">"https://api.dushu.io/fragment/content"</span>, data=rawBody, headers=headers)</div><div class="line">        mediaUrls = response.json()[<span class="string">'mediaUrls'</span>][<span class="number">0</span>].strip(<span class="string">'ppyun://'</span>)</div><div class="line">        <span class="comment"># print mediaUrls</span></div><div class="line"></div><div class="line">        <span class="comment"># get CDN（ppyun）对应文件名url信息,最后一行为下载URL信息</span></div><div class="line">        response = session.get(<span class="string">"http://svc.pptvyun.com/svc/m3u8player/pl/"</span> + mediaUrls+<span class="string">'.m3u8'</span>, headers=headers)</div><div class="line">        cdn_url = response.content.splitlines()[<span class="number">-1</span>]</div><div class="line"></div><div class="line">        valid_url = urlparse.urlparse(cdn_url)</div><div class="line">        <span class="keyword">if</span> valid_url.scheme:</div><div class="line">            cdn_rs = urlparse.urlparse(cdn_url)</div><div class="line">            cdn_scheme = cdn_rs.scheme</div><div class="line">            cdn_host = cdn_rs.netloc</div><div class="line"></div><div class="line">            <span class="comment"># 取带宽最大CDN URL 进行访问，获取视频URL（第一个返回结果,第五行）</span></div><div class="line">            response = session.get(cdn_url, headers=headers)</div><div class="line">            video_url = response.content.splitlines()[<span class="number">4</span>]</div><div class="line">            video_rs = urlparse.urlparse(video_url)</div><div class="line">            video_path = video_rs.path</div><div class="line">            video_q = urlparse.parse_qs(video_rs.query)</div><div class="line">            video_q[<span class="string">'during'</span>] = <span class="number">100000</span>     <span class="comment"># 下载完整视频，设置during=100000，start=00</span></div><div class="line">            file_name = title+<span class="string">'.ts'</span></div><div class="line">            <span class="comment"># file_name = str(id)+'_'+title+'.ts'</span></div><div class="line">            download(file_name, cdn_scheme+<span class="string">'://'</span>+cdn_host+<span class="string">'/'</span>+video_path, video_q, headers)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">continue</span>            </div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    session = requests.Session()</div><div class="line">    headers = &#123;<span class="string">"Accept"</span>:<span class="string">"*/*"</span>,<span class="string">"X-DUSHU-APP-MUID"</span>:<span class="string">"00000000-0000-0000-0000-000000000000"</span>,<span class="string">"X-DUSHU-APP-VER"</span>:<span class="string">"3.8.1"</span>,<span class="string">"User-Agent"</span>:<span class="string">"BookClub/3.8.1 (iPhone; iOS 10.3.1; Scale/3.00)"</span>,<span class="string">"Connection"</span>:<span class="string">"close"</span>,<span class="string">"X-DUSHU-APP-DEVID"</span>:<span class="string">"0CBC0CBC-5CB5-4239-AF61-6C24EC1C755B"</span>,<span class="string">"X-DUSHU-APP-PLT"</span>:<span class="string">"1"</span>,<span class="string">"Accept-Encoding"</span>:<span class="string">"gzip, deflate"</span>,<span class="string">"Accept-Language"</span>:<span class="string">"zh-Hans-CN;q=1, en-CN;q=0.9"</span>,<span class="string">"X-DUSHU-APP-SYSVER"</span>:<span class="string">"Version 10.3.1 (Build 14E304)"</span>,<span class="string">"Content-Type"</span>:<span class="string">"application/json"</span>&#125;</div><div class="line"></div><div class="line">    <span class="comment"># todo:</span></div><div class="line">    <span class="comment"># your token</span></div><div class="line">    token = <span class="string">""</span></div><div class="line">      </div><div class="line">    get_audio(token)</div><div class="line">    get_video(token)</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;樊登读书会APP,有声阅读神器,用户付费后可每年获得50本书籍的精华解读，以图文、音频、视频三种类型提供线上服务。&lt;/p&gt;
+&lt;p&gt;买了会员后，只能使用App听，有点不方便，需求是离线下载PC上自习选择听或看，通过分析数据包，发现可以离线下载。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="移动安全" scheme="https://jfsec.org/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="技术分享" scheme="https://jfsec.org/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="Web" scheme="https://jfsec.org/tags/Web/"/>
+    
+      <category term="App" scheme="https://jfsec.org/tags/App/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>应用系统安全通用技术要求</title>
+    <link href="https://jfsec.org/2017/04/10/appsec-req-std/"/>
+    <id>https://jfsec.org/2017/04/10/appsec-req-std/</id>
+    <published>2017-04-10T06:28:00.000Z</published>
+    <updated>2017-05-10T12:29:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于应用系统安全，业界都认识到尽早在需求、设计阶段介入安全活动，具体怎么做？有许多方法，包括学术方法、江湖方法等，根据多年实践，整理了一个应用系统安全通用技术要求，供有需要的同学参考。</p>
+<a id="more"></a>
+<h2 id="应用系统安全通用技术要求"><a href="#应用系统安全通用技术要求" class="headerlink" title="应用系统安全通用技术要求"></a>应用系统安全通用技术要求</h2><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li>1 标识与鉴别</li>
+<li>2 授权与访问控制</li>
+<li>3 会话管理 </li>
+<li>4 数据安全 </li>
+<li>5 软件容错和异常管理</li>
+<li>6 安全审计 </li>
+<li>7 应用安全禁止项 </li>
+<li>8 移动APP安全</li>
+<li>9 微信应用安全 </li>
+<li>10 大数据系统安全 </li>
+</ul>
+<!-- more -->
+<h2 id="1-1-标识与鉴别"><a href="#1-1-标识与鉴别" class="headerlink" title="1.1　标识与鉴别"></a>1.1　标识与鉴别</h2><h3 id="1-1-1-身份标识"><a href="#1-1-1-身份标识" class="headerlink" title="1.1.1　身份标识"></a>1.1.1　身份标识</h3><p><strong>应用系统的管理员及普通用户应具有明确的身份标识（账号）：</strong></p>
+<ul>
+<li>a)    身份标识应具有唯一性，保证应用系统中不存在重复身份标识；</li>
+<li>b)    身份标识应不可预测，如递增的序列号等；</li>
+<li>c)    将身份标识与审计记录关联；</li>
+<li>d)    应支持角色定义，角色的权限管理，用户的角色管理等；</li>
+<li>e)    授权管理员能够增加、修改、删除账号和角色；</li>
+<li>f)    账号异常时（如登录过于频繁、长时间未登录等），应支持管理员后台锁定用户账号。</li>
+</ul>
+<h3 id="1-1-2-基本身份鉴别"><a href="#1-1-2-基本身份鉴别" class="headerlink" title="1.1.2　基本身份鉴别"></a>1.1.2　基本身份鉴别</h3><p><strong>应用系统应对管理员及普通用户的身份进行鉴别：</strong></p>
+<ul>
+<li>a)    应采用至少一种方式对管理员及用户身份进行鉴别：如用户名/密码、USBkey、证书、动态密码等；</li>
+<li>b)    若通过用户名/密码进行鉴别，必须支持：<ul>
+<li>1)    密码长度限制（至少8位）；</li>
+<li>2)    复杂度限制（如包含字母、数字和特殊字符）；</li>
+<li>3)    支持弱密码检查，不得使用常见的弱密码，如!QAZ2wsx、test1234等；</li>
+<li>4)    用户应能修改自身密码，管理员可修改自身密码，用户管理员可重置其它账号密码；</li>
+<li>5)    支持密码长度及复杂度要求配置；</li>
+<li>6)    支持密码有效期检查，到达密码有效期后应提醒用户修改密码；</li>
+</ul>
+</li>
+<li>c)    若采用USBkey、动态密码令牌等进行身份鉴别，应具有PIN码保护；</li>
+<li>d)    对互联网接入的重要系统应采用两种或两种以上的方式进行鉴别。</li>
+</ul>
+<h3 id="1-1-3-重鉴别"><a href="#1-1-3-重鉴别" class="headerlink" title="1.1.3　重鉴别"></a>1.1.3　重鉴别</h3><p><strong>执行重要操作或者敏感信息修改时，需对用户进行重鉴别或结合其它途径进行鉴别：</strong></p>
+<ul>
+<li>a)    涉及交易功能、账号重要关联信息（密码、身份证件号、关联的手机号/邮箱等）修改时应对用户再次进行身份认证；<ul>
+<li>b)    若支持密码找回功能，需通过账号绑定的手机或邮箱发送随机证码方式进行二次鉴别。 </li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-4-图形验证码"><a href="#1-1-4-图形验证码" class="headerlink" title="1.1.4　图形验证码"></a>1.1.4　图形验证码</h3><p><strong>对于通过电脑自动操作可能会带来危害的页面，需采用验证码措施，防止电脑自动识别：</strong></p>
+<ul>
+<li>a)    至少以下页面需采用图形验证码：注册页面、短信及邮箱认证页面、限时抢购类等；</li>
+<li>b)    图形验证码应采取一定的干扰措施且不可预测，如字体倾斜，加背景噪点、横线等；</li>
+<li>c)    需由服务端生成并进行验证，不得在页面源文件返回；</li>
+<li>d)    验证码应具有有效期，建议为5分钟。</li>
+</ul>
+<h3 id="1-1-5-防暴力猜测"><a href="#1-1-5-防暴力猜测" class="headerlink" title="1.1.5　防暴力猜测"></a>1.1.5　防暴力猜测</h3><p> <strong>应用系统应具备防止密码、验证码等的暴力猜测功能：</strong></p>
+<ul>
+<li>a)防密码暴力猜测：对采用密码进行鉴别的系统，因防止密码暴力猜测，连续失败登录后锁定账号。账号锁定后可以由系统管理员解锁，也可以在一段时间后自动解锁； </li>
+<li>b)防验证码暴力猜测：若系统具备验证码功能，应具有防止验证码暴力猜测措施。如验证码连续错误一定的次数后，锁定该主机继续猜测或者锁定主机IP地址等。 </li>
+</ul>
+<h3 id="1-1-6-鉴别数据保护"><a href="#1-1-6-鉴别数据保护" class="headerlink" title="1.1.6　鉴别数据保护"></a>1.1.6　鉴别数据保护</h3><p><strong>应用系统应具备鉴别数据保护功能，具体技术要求如下：</strong></p>
+<ul>
+<li>a)    鉴别数据加密存储；<ul>
+<li>1)    尽可能不在客户端存储密码，若有必要，如cookie中暂存，应以加密方式存储；</li>
+<li>2)    服务器或数据库中以摘要值方式存储：使用Hash+Salt,使用SHA2及以上强度的Hash算法。</li>
+</ul>
+</li>
+<li>b)    鉴别数据加密传输：可采用加密的传输通道，或者对密码以摘要方式传输。</li>
+</ul>
+<h3 id="1-1-7-管理安全"><a href="#1-1-7-管理安全" class="headerlink" title="1.1.7　管理安全"></a>1.1.7　管理安全</h3><p><strong>应用系统应支持管理员设置可信管理主机的IP地址，仅通过可信主机能够登录应用系统进行管理； 后台管理界面不应向互联网暴露。 </strong></p>
+<h3 id="1-1-8-统一认证"><a href="#1-1-8-统一认证" class="headerlink" title="1.1.8　统一认证"></a>1.1.8　统一认证</h3><p><strong>内部、外部人员应采取统一认证：</strong></p>
+<ul>
+<li>a)    内部人员使用的应用系统应采用独立集中认证（SSO）；</li>
+<li>b)    外部人员使用的应用系统应采用独立集中认证（SSO）。</li>
+</ul>
+<h2 id="1-2-授权与访问控制"><a href="#1-2-授权与访问控制" class="headerlink" title="1.2　授权与访问控制"></a>1.2　授权与访问控制</h2><h3 id="1-2-1-访问控制"><a href="#1-2-1-访问控制" class="headerlink" title="1.2.1　访问控制"></a>1.2.1　访问控制</h3><p><strong>应用系统应提供基于主体（动作执行者，通常为账号、应用程序等）、客体（动作的受体，如接口、文件、数据、菜单功能等）及操作内容的访问控制功能：</strong></p>
+<ul>
+<li>a)    访问控制的覆盖范围应包括与资源访问相关的主体、客体及它们之间的操作：<ul>
+<li>1)    主体：应支持用户、用户组，或者依据公司的组织架构；</li>
+<li>2)    客体：基于业务需求及菜单的各项子功能，如用户管理、权限管理、业务操作、审计管理、数据范围等；</li>
+<li>3)    操作：应支持可读、读写等。</li>
+</ul>
+</li>
+<li>b)    访问控制的细粒度应满足业务上最小授权的需求；</li>
+<li>c)    权限控制策略严格有效，防止任何越权操作。任何操作执行前，应对操作主体、客体并依据访问控制规则进行检查。 </li>
+</ul>
+<h3 id="1-2-2-权限最小化"><a href="#1-2-2-权限最小化" class="headerlink" title="1.2.2　权限最小化"></a>1.2.2　权限最小化</h3><p><strong>应对用户/管理员、数据库连接等应采取最小权限原则：</strong></p>
+<ul>
+<li>a)    不应具有超级账号（同时具有操作、审计等应用系统的全部权限）；</li>
+<li>b)    至少支持将操作用户及审计用户权限分离；</li>
+<li>c)    与数据库连接的账号应为数据库普通权限账号，只能访问允许的数据库和表；</li>
+<li>d)    应用启动进程的权限尽可能小。应用使用的系统账号（运行环境中的）应该有尽可能低的权限。不使用“Administrator”、“root”、“sa”、“sysman”、“Supervisor”或其它所有的特权用户被用来运行应用程序或连接到网站服务器，或中间件。</li>
+</ul>
+<h3 id="1-2-3-禁止默认账号"><a href="#1-2-3-禁止默认账号" class="headerlink" title="1.2.3　禁止默认账号"></a>1.2.3　禁止默认账号</h3><p><strong>应用系统不应具有默认账号（固化在应用系统中的账号，且不可修改）。</strong></p>
+<h3 id="1-2-4-统一授权"><a href="#1-2-4-统一授权" class="headerlink" title="1.2.4　统一授权"></a>1.2.4　统一授权</h3><p><strong>应用系统应支持集中统一授权。</strong></p>
+<h2 id="1-3-会话管理"><a href="#1-3-会话管理" class="headerlink" title="1.3　会话管理"></a>1.3　会话管理</h2><h3 id="1-3-1-会话超时"><a href="#1-3-1-会话超时" class="headerlink" title="1.3.1　会话超时"></a>1.3.1　会话超时</h3><p><strong>应用系统应具有会话超时机制：</strong></p>
+<ul>
+<li>a)    管理界面及业务界面应具有超时退出机制；</li>
+<li>b)    超时时间管理员可配置，交易页面不超过5分钟。</li>
+</ul>
+<h3 id="1-3-2-并发控制"><a href="#1-3-2-并发控制" class="headerlink" title="1.3.2　并发控制"></a>1.3.2　并发控制</h3><p><strong> 应用系统应对会话并发进行控制：</strong></p>
+<ul>
+<li>a)    应能对系统最大并发会话连接数进行限制；</li>
+<li>b)    应能对单个账号的多重并发（同一账号同时在不同的终端上登录）进行限制，出现重复登录时，给出明确提示；</li>
+<li>c)    应能对系统的连接频率进行限制。</li>
+</ul>
+<h3 id="5-3-3-防重放"><a href="#5-3-3-防重放" class="headerlink" title="5.3.3　防重放"></a>5.3.3　防重放</h3><p><strong>应用系统应采取时间戳、序列号等措施防止重放攻击及重复提交：</strong></p>
+<ul>
+<li>a)    防鉴别信息重放：应具备防止通过重放抓取的鉴别数据报文或者cookie绕过身份验证过程； </li>
+<li>b)    防止交易数据重复接收处理：应具备防止因网络因素或人为有意行为的交易数据重复接收处理。 </li>
+</ul>
+<h3 id="1-3-4-会话安全"><a href="#1-3-4-会话安全" class="headerlink" title="1.3.4　会话安全"></a>1.3.4　会话安全</h3><p> <strong>应采取措施保证http（https）的会话安全：</strong></p>
+<ul>
+<li>a)    应保证cookie安全性：如启用HttpOnly属性，使用临时性Cookie取代永久性Cookie，不使用Cookie定制信息，敏感Cookie需加密保存，HTTPS协议下应启用Secure属性；</li>
+<li>b)    用户注销会话后，不能通过使用浏览器的回退按钮来显示；</li>
+<li>c)    用户登录后需要使用新的会话标识，并且会话标识的生成应具有随机性。</li>
+</ul>
+<h2 id="1-4-数据安全"><a href="#1-4-数据安全" class="headerlink" title="1.4　数据安全"></a>1.4　数据安全</h2><h3 id="1-4-1-数据传输安全"><a href="#1-4-1-数据传输安全" class="headerlink" title="1.4.1　数据传输安全"></a>1.4.1　数据传输安全</h3><p><strong>应采取措施保证服务器与客户端数据传输安全：</strong></p>
+<ul>
+<li>a)    对于互联网传输的敏感信息应采取加密方式传输； </li>
+<li>b)    互联网传输的BS架构应用应采用VPN链路加密或HTTPS（应采用TLS加密）； <ul>
+<li>c)    互联网传输的CS架构应用应采用加密方式传输； </li>
+<li>d)    对涉及资金交易的传输内容应采取完整性保护措施； </li>
+</ul>
+</li>
+<li>e)    对涉及资金交易的传输内容应采取抗抵赖措施。 </li>
+</ul>
+<h3 id="1-4-2-数据存储及展示安全"><a href="#1-4-2-数据存储及展示安全" class="headerlink" title="1.4.2　数据存储及展示安全"></a>1.4.2　数据存储及展示安全</h3><p> <strong>采取措施保证服务器及客户端存储的敏感信息的安全：</strong></p>
+<ul>
+<li>a)    服务端的敏感数据应保存在数据库中，特别敏感（如身份鉴别数据、客户隐私信息等）的内容应在数据库中加密存储；</li>
+<li>b)    服务端及客户端保存敏感信息的非数据库文件应加密存储；</li>
+<li>c)    非业务上的必要，敏感信息在终端上展示时应做模糊处理，如部分内容以方式传输及显示；</li>
+<li>d)    日志审计记录中不能记录敏感信息，如鉴别信息、完整交易信息、银行卡相关信息等。</li>
+</ul>
+<h3 id="1-4-3-参数保护"><a href="#1-4-3-参数保护" class="headerlink" title="1.4.3　参数保护"></a>1.4.3　参数保护</h3><p><strong>应采取措施保证参数安全：</strong></p>
+<ul>
+<li>a)    不得在代码中对敏感信息进行硬编码，如数据库连接参数等；</li>
+<li>b)    必要时需要配置Robots.txt，列出允许爬虫访问范围，防止访问敏感数据；</li>
+<li>c)    使用HTTP POST方法代替GET方法来提交表单，禁止使用表单的隐藏字段来传递敏感信息；不依赖HTTP头信息，对客户端提交的HTTP头进行过滤；</li>
+<li>d)    BS应用页面源文件中不得包含敏感信息：如开发人员信息、内部地址及路径等；</li>
+<li>e)    内容安全，如：对公开发布的内容、在论坛或留言时需要对关键字和敏感字进行过滤。</li>
+</ul>
+<h3 id="1-4-4-密钥及加密算法安全要求"><a href="#1-4-4-密钥及加密算法安全要求" class="headerlink" title="1.4.4　密钥及加密算法安全要求"></a>1.4.4　密钥及加密算法安全要求</h3><p><strong>应保证秘钥分发存储及加密算法的安全：</strong></p>
+<ul>
+<li>a)    应保证密钥的存储、传输安全；</li>
+<li>b)    密钥保存在终端时应定期更换；</li>
+<li>c)    系统所采用的各类加密算法（对称算法、非对称算法、摘要算法等）应使用安全的加密算法：</li>
+<li>d)    不得使用自定义算法。</li>
+</ul>
+<h2 id="1-5-软件容错和异常管理"><a href="#1-5-软件容错和异常管理" class="headerlink" title="1.5　软件容错和异常管理"></a>1.5　软件容错和异常管理</h2><h3 id="1-5-1-验证方式"><a href="#1-5-1-验证方式" class="headerlink" title="1.5.1　验证方式"></a>1.5.1　验证方式</h3><p><strong> 应对客户端提交的表单、文件等进行验证：</strong></p>
+<ul>
+<li>a)    对来自系统之外的任何数据进行有效性验证，包括但不限于：客户端提交的任何数据（URL、表单、文件、HTTP协议头等标准协议的扩展内容等）、通过应用 接口接收的数据、通过文件共享/应用接口等主动获取的数据等；</li>
+<li>b)    采用白名单方式进行验证，仅允许规则允许的内容，对无法识别的内容默认禁止；</li>
+<li>c)    可采取客户端对通过人机接口输入的内容进行初步验证方式；</li>
+<li>d)    对所有外部进入的数据均需由服务端进行有效性验证；</li>
+<li>e)    应采用标准的、统一的筛选器对内容进行检查验证。</li>
+</ul>
+<h3 id="1-5-2-限制及验证内容"><a href="#1-5-2-限制及验证内容" class="headerlink" title="1.5.2　限制及验证内容"></a>1.5.2　限制及验证内容</h3><p> <strong>限制及验证内容应包括以下方面：</strong></p>
+<ul>
+<li>a)    数据的字符类型、长度、格式和范围，防止缓冲区溢出及其他不可预知的异常；</li>
+<li>b)    文件的类型格式、大小等；</li>
+<li>c)    已知的有害输入，如例如“’”,“–”，“&amp;”，“\&lt;”,“>”，“/”，“=”，“#”，“\r\n”，“\n\n”，“；”等字符，防止常见的SQL注入、XSS、等攻击行为；</li>
+<li>d)    对常见编码格式进行检查，防止通过转换编码逃避验证。</li>
+</ul>
+<h3 id="1-5-3-异常管理"><a href="#1-5-3-异常管理" class="headerlink" title="1.5.3　异常管理"></a>1.5.3　异常管理</h3><p><strong>当系统出现故障时，应避免敏感信息泄露及保存详细错误信息，出现故障时：</strong></p>
+<ul>
+<li>a)    向客户端及人机界面以最小原则反馈出错提示（如错误ID），避免泄露敏感信息；</li>
+<li>b)    系统后台应保存详细的错误信息，足以支持运维人员及开发人员对故障进行分析定位。</li>
+</ul>
+<h3 id="1-5-4-第三方组件安全"><a href="#1-5-4-第三方组件安全" class="headerlink" title="1.5.4　第三方组件安全"></a>1.5.4　第三方组件安全</h3><p><strong>应用系统若采用第三方组件（如Apache、tomcat等中间件，数据库，struct2、jQuery、ewebeditor、fckeditor等应用组件，.net、java运行环境等），应保证其安全：</strong></p>
+<ul>
+<li>a)    需从可信途径获取第三方组件的安装程序；</li>
+<li>b)    采用不存在已知安全漏洞的第三方组件版本；</li>
+<li>c)    对第三方组件进行安全加固配置：如删除非必要的默认页面、关闭调试模式、过滤详细的错误信息反馈等。</li>
+</ul>
+<h2 id="1-6-安全审计"><a href="#1-6-安全审计" class="headerlink" title="1.6　安全审计"></a>1.6　安全审计</h2><h3 id="1-6-1-审计事件类型"><a href="#1-6-1-审计事件类型" class="headerlink" title="1.6.1　审计事件类型"></a>1.6.1　审计事件类型</h3><p><strong>各应用系统分别进行用户管理过程的日志记录，包括用户的管理行为、登录行为等，确保系统操作行为可追溯，具体如：</strong></p>
+<ul>
+<li>a)    鉴别事件：通过人机界面及应用接口等所有的鉴别事件，包括成功和失败事件；</li>
+<li>b)    用户非授权访问尝试操作；</li>
+<li>c)    账号操作：包括增加、修改、删除等；</li>
+<li>d)    客户数据批量导出操作；</li>
+<li>e)    其它重要操作内容，如数据查询及导出、重要参数修改；</li>
+<li>f)    系统运行事件：系统启动、重启、停止及运行过程中各种可能的异常情况。</li>
+</ul>
+<h3 id="1-6-2-审计内容"><a href="#1-6-2-审计内容" class="headerlink" title="1.6.2　审计内容"></a>1.6.2　审计内容</h3><p><strong>每个审计记录中至少记录如下信息：</strong></p>
+<ul>
+<li>a)    事件的主体：如用户、进程名等；</li>
+<li>b)    事件的日期、时间；</li>
+<li>c)    事件来源：如请求的IP地址，MAC地址；</li>
+<li>d)    事件类型；</li>
+<li>e)    事件内容；</li>
+<li>f)    事件结果（可包含在事件内容中）：成功或者失败。</li>
+</ul>
+<h3 id="1-6-3-审计日志管理"><a href="#1-6-3-审计日志管理" class="headerlink" title="1.6.3　审计日志管理"></a>1.6.3　审计日志管理</h3><p><strong>应用系统应具备安全审计功能，日志管理要求如下：</strong></p>
+<ul>
+<li>a) 只允许授权管理员访问日志；</li>
+<li>b) 授权管理员支持对日志存档、删除和清空的权限；</li>
+<li>c) 提供能查阅日志的工具，并且只允许授权管理员使用查阅工具；</li>
+<li>d) 提供对审计事件一定的检索能力，检索条件包括时间、日期、主体ID、客体ID等；</li>
+<li>e) 支持以标准格式（如Syslog、SNMP等）方式把日志数据外发到统一日志服务器。</li>
+</ul>
+<h3 id="1-6-4-审计日志分析及告警"><a href="#1-6-4-审计日志分析及告警" class="headerlink" title="1.6.4　审计日志分析及告警"></a>1.6.4　审计日志分析及告警</h3><p><strong>涉及交易、支付类的关键应用系统应提供一定的日志分析及告警功能：</strong></p>
+<ul>
+<li>a)    应有一套规则对审计日志进行分析，发现可能存在的异常，如<ul>
+<li>1)    登录异常：非业务时间登录、非可信地址范围内登录、连续登录失败、登录过于频繁等<ul>
+<li>2)    用户行为异常：持续尝试访问非授权内容、业务数据批量导出等；</li>
+<li>3)    系统状态异常：功能模块异常、并发数异常、服务水平过低等。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>b)    提供分析接口，管理员可自定义分析规则对审计日志进行分析；</li>
+<li>c)    分析出潜在的危害行为应及时向管理员告警：页面告警、弹出对话框、email告警等；</li>
+<li>d)    定期向审计管理员发送统计分析报表。</li>
+</ul>
+<h2 id="1-7-应用安全禁止项"><a href="#1-7-应用安全禁止项" class="headerlink" title="1.7　应用安全禁止项"></a>1.7　应用安全禁止项</h2><p><strong>系统页面不应存在以下常见安全漏洞:</strong></p>
+<ul>
+<li>a)    用户注册邮箱或手机短信认证存在被绕过的逻辑缺陷；</li>
+<li>b)    密码找回功能存在被绕过的逻辑缺陷；</li>
+<li>c)    XSS及跨站请求伪造（CSRF）漏洞；</li>
+<li>d)    各类注入漏洞（包括SQL注入等）。</li>
+</ul>
+<h2 id="1-8-移动APP安全"><a href="#1-8-移动APP安全" class="headerlink" title="1.8　移动APP安全"></a>1.8　移动APP安全</h2><h3 id="1-8-1-Android客户端"><a href="#1-8-1-Android客户端" class="headerlink" title="1.8.1　Android客户端"></a>1.8.1　Android客户端</h3><p><strong>应采取措施保证Android客户端安全：</strong></p>
+<ul>
+<li>a)    反编译保护。在将源代码编译成apk时，应对其进行代码混淆操作,如采用Android sdk自带的proguard或商业混淆软件，以防止apk被反编译成易懂的源码。</li>
+<li>b)    应用完整性检验。应对APP添加自身完整性检测功能，以防御其被第三方非法篡改。如对自身计算哈希值（md5/sha1/sha256）并进行校验。</li>
+<li>c)    Activity界面劫持。应对APP添加运行时顶层activity界面检测机制，以防御activity界面劫持攻击。</li>
+<li>d)    内存保护。APP在运行过程中，不在内存中保存用户敏感信息（如卡号、密码等），或将敏感信息加密后保存，并在使用后及时清除。</li>
+<li>e)    动态调试。APP应能够防动态调试，可选择自行开发反调试功能（如检测系统是否运行了常用的调试工具）。</li>
+<li>f)    进程注入。APP应能够防进程注入，开发可选择自行开发防动态注入功能。</li>
+<li>g)    组件安全。应合理设置APP组件的exported属性，防止APP自身不必要的组件暴露。</li>
+<li>h)    软键盘安全。对敏感数据（如密码输入、卡号输入）输入的地方，应开发并调用自定义软键盘，以防御键盘劫持攻击。</li>
+<li>i)    软键盘增强安全。对于使用的自定义软键盘，应使软键盘按键随机分布，且应取消其按键点击回显，或缩短其回显时间。（适用于支付等场景）</li>
+<li>j)    手势密码认证。对于重要的APP，应根据业务需要，添加手势密码认证机制，以防御被非法访问。</li>
+<li>k)    建议自研或采用第三方加壳技术进行保护。 </li>
+</ul>
+<h3 id="1-8-2-iOS客户端"><a href="#1-8-2-iOS客户端" class="headerlink" title="1.8.2　iOS客户端"></a>1.8.2　iOS客户端</h3><p><strong>应采取措施保证iOS客户端安全：</strong></p>
+<ul>
+<li>a)    应用完整性检验。应对APP添加自身完整性检测功能，以防御其可被第三方非法修改；或者检测iOS设备是否越狱，以进行风险提醒。</li>
+<li>b)    动态调试和注入。APP应能够防动态调试，可选择自行开发反调试功能（如检测系统是否运行了常用的调试工具），或者检测iOS设备是否越狱，以进行风险提 醒。（适用于交易类APP）</li>
+<li>c)    内存保护。APP在运行过程中，不在内存中保存用户敏感信息（如卡号、密码等），或将敏感信息加密后保存，并在使用后及时清除。或者检测iOS设备是否越 狱，以进行风险提醒。（适用于交易类APP）</li>
+<li>d)    软键盘增强安全。对于使用的自定义软键盘，应使软键盘按键随机分布，且应取消其按键点击回显，或明显缩短其回显时间。（适用于支付场景）</li>
+<li>e)    手势密码认证。对于重要的APP，应根据业务需要，添加手势密码认证机制，</li>
+</ul>
+<h3 id="1-8-3-客户端数据安全"><a href="#1-8-3-客户端数据安全" class="headerlink" title="1.8.3　客户端数据安全"></a>1.8.3　客户端数据安全</h3><p><strong>应采取措施保证客户端数据安全：</strong></p>
+<ul>
+<li>a)    数据文件安全。应当不在APP客户端本地文件保存用户敏感数据（如密码、卡号、证件号等），或者采用安全加密算法（如AES/SHA256等）加密后再保存；</li>
+<li>b)    数据库安全。应对数据库添加访问口令，防御其他APP的直接访问；</li>
+<li>c)    应用日志安全。在APP编译打包成正式安装包时，应删除或注释掉源代码里的日志打印语句，以防止不必要的日志信息泄露。</li>
+</ul>
+<h3 id="1-8-4-通信安全"><a href="#1-8-4-通信安全" class="headerlink" title="1.8.4　通信安全"></a>1.8.4　通信安全</h3><p><strong>应采取措施保证App通信全：</strong></p>
+<ul>
+<li>a)    通信加密。应使用加密通信通道（HTTPS)进行用户敏感信息（如登录密码、交易密码等）的传输。</li>
+<li>b)    关键字段单独加密（增强要求）。对于需要传输的敏感或重要的字段信息（如登录密码、交易密码、卡号等），应进行加密（如AES、 SHA256等）后再进行传输。</li>
+<li>c)    数据包完整性校验（增强要求）。对重要通信数据包（如转账、交易等），应对数据包进行完整性签名，并在服务端进行校验，以防止传输过程中被篡改。</li>
+<li>d)    证书合法性校验。当APP采用HTTPS协议进行数据传输时，APP应对接收到的TLS证书进行合法性校验（适用于转账、交易等场景）</li>
+</ul>
+<h3 id="1-8-5-密码策略安全"><a href="#1-8-5-密码策略安全" class="headerlink" title="1.8.5　密码策略安全"></a>1.8.5　密码策略安全</h3><p><strong>应采取措施保证密码策略安全：</strong></p>
+<ul>
+<li>a)    密码复杂度测试。    应根据业务需要，在服务端后台添加密码复杂度检测机制，如限制密码长度、大小写、特殊字符等。</li>
+<li>b)    帐号锁定策略。应根据业务需要，在服务端后台添加账号登录失败锁定机制（如连续登录失败5次即锁定），或在登录页面处添加图形验证码机制，以防御暴力破解攻击。</li>
+<li>c)    帐号登录限制。应根据业务需要，在服务端后台添加账号登录检测机制，限制同一账号的多终端同时登录。</li>
+</ul>
+<h3 id="1-8-6-APP服务端安全"><a href="#1-8-6-APP服务端安全" class="headerlink" title="1.8.6　APP服务端安全"></a>1.8.6　APP服务端安全</h3><p><strong>服务端安全参照1.1～1.7要求。</strong></p>
+<h2 id="1-9-微信应用安全"><a href="#1-9-微信应用安全" class="headerlink" title="1.9　微信应用安全"></a>1.9　微信应用安全</h2><p><strong>对于微信应用，应严格检查提交的请求及接口的安全：</strong></p>
+<ul>
+<li>a)    接口安全：应保证接口安全，防止非授权对象调用；</li>
+<li>b)    以白名单方式对来自接口的任何请求数据，禁止任何不能识别的内容。</li>
+</ul>
+<p><strong>服务端安全参照1.1～1.7要求。</strong></p>
+<h2 id="1-10-大数据系统安全"><a href="#1-10-大数据系统安全" class="headerlink" title="1.10　大数据系统安全"></a>1.10　大数据系统安全</h2><p><strong>对于大数据系统，应采取以下措施保证其安全：</strong></p>
+<ul>
+<li>a)    可扩展性：系统设计上应具有良好的扩展性，可根据业务需要增加节点，业务数据能够自动迁移；</li>
+<li>b)    冗余部署：业务数据应冗余存储，单节点故障不影响系统的正常运行，且不会导致数据丢失；</li>
+<li>c)    数据筛选：对进入系统的数据依据相应的规则进行检查，去除无用数据；</li>
+<li>d)    去隐私化：对非业务上必要的隐私数据，如身份证、客户详细信息等，应采取一定的去隐私化处理；</li>
+<li>e)    监控平台：应相应部署大数据库监控平台，对系统的运行状态等进行实施监测。</li>
+</ul>
+<p><strong>服务端安全参照1.1～1.7要求</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于应用系统安全，业界都认识到尽早在需求、设计阶段介入安全活动，具体怎么做？有许多方法，包括学术方法、江湖方法等，根据多年实践，整理了一个应用系统安全通用技术要求，供有需要的同学参考。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="安全需求" scheme="https://jfsec.org/categories/%E5%AE%89%E5%85%A8%E9%9C%80%E6%B1%82/"/>
+    
+      <category term="技术规范" scheme="https://jfsec.org/categories/%E5%AE%89%E5%85%A8%E9%9C%80%E6%B1%82/%E6%8A%80%E6%9C%AF%E8%A7%84%E8%8C%83/"/>
+    
+    
+      <category term="Android" scheme="https://jfsec.org/tags/Android/"/>
+    
+      <category term="iOS" scheme="https://jfsec.org/tags/iOS/"/>
+    
+      <category term="Web" scheme="https://jfsec.org/tags/Web/"/>
+    
+      <category term="标准" scheme="https://jfsec.org/tags/%E6%A0%87%E5%87%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>走进用户劳动竞赛故事</title>
+    <link href="https://jfsec.org/2016/05/24/web-security/"/>
+    <id>https://jfsec.org/2016/05/24/web-security/</id>
+    <published>2016-05-24T06:22:54.000Z</published>
+    <updated>2017-05-12T06:57:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>某IT中心举办了一个<em>劳动竞赛</em>活动，“走进用户，一日三查”，请员工早、中、晚访问指定的IT系统，确认是否可用，为记录大家任务执行情况开发了任务系统，业务功能很简单，如访问正常，提交正常任务记1分，反之，访问异常，提交异常任务记二分并提交一个工单，定期统计各员工得分，进行排名和奖励。<br>由于缺乏安全评审，根据业务需求，开发考虑到员工提交任务只能在指定时间段内可用，比如早上只能提交对应早上的检查任务，不能提交中午或晚上的检查任务，所以在实现的时候增加了时间检查，实现方法是在前端JS脚本判断当前时间处于哪个检查任务阶段，只有符合条件才能提交，但是在服务端没有验证。</p>
+<a id="more"></a>
+<h2 id="初步分析"><a href="#初步分析" class="headerlink" title="初步分析"></a>初步分析</h2><p><strong>使用chrome 登录任务系统</strong>打开开发者工具，查看提交任务按钮对应信息，发现onclick事件</p>
+<ul>
+<li>正常按钮：触发normalTask(taskId)</li>
+<li>异常按钮：触发abnormalTask(taskId)</li>
+</ul>
+<p>在开发者工具source tab中全文搜索normalTask，逻辑如下</p>
+<ul>
+<li>当前时间如处于上午时段，post到normaltask url，参数为系统名称、taskid</li>
+<li>中午、晚上也是类似</li>
+</ul>
+<p>经过以上简单分析，了解了应用处理的逻辑，找到了实际<strong>任务提交URL</strong>及<strong>参数</strong>规则，接下来需要测试验证</p>
+<h2 id="测试验证"><a href="#测试验证" class="headerlink" title="测试验证"></a>测试验证</h2><p>测试方法或思路有几种方法：</p>
+<h3 id="在Chrome-中修改JS-函数逻辑，去掉JS时间限制"><a href="#在Chrome-中修改JS-函数逻辑，去掉JS时间限制" class="headerlink" title="在Chrome 中修改JS 函数逻辑，去掉JS时间限制"></a>在Chrome 中修改JS 函数逻辑，去掉JS时间限制</h3><p>修改方法</p>
+<ul>
+<li>首先 在Chrome Sources 中修改normalTask 函数，去掉JS时间限制，修改完成后保存（ctrl＋s）</li>
+<li>或 在Chrome Console中新建一个提交任务函数myTask，拷贝normalTask内容，去除时间限制内容，仅保留ajax post内容</li>
+<li><p>最后，在Chrome Console中 输入 normalTask</p>
+<p>  <code>normalTask(&#39;123456&#39;)</code></p>
+</li>
+</ul>
+<h3 id="自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本"><a href="#自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本" class="headerlink" title="自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本"></a>自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本</h3><p>步骤：</p>
+<ul>
+<li>登录任务系统 使用登录帐号及密码</li>
+<li>查找每日任务</li>
+<li>强行提交任务</li>
+</ul>
+<p><strong>辅助工具</strong></p>
+<ul>
+<li>Burp Suite</li>
+<li>Burp Suite插件 generate script，可生成POST／GET脚本</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_phase</span><span class="params">()</span>:</span></div><div class="line">  c_hour = datetime.now().hour</div><div class="line">  <span class="keyword">if</span> c_hour &lt;= <span class="number">8</span>:</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span></div><div class="line">  <span class="keyword">if</span> c_hour &gt;= <span class="number">12</span> <span class="keyword">and</span> c_hour &lt;= <span class="number">13</span>:</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span></div><div class="line">  <span class="keyword">if</span> c_hour &gt;= <span class="number">18</span> <span class="keyword">and</span> c_hour &lt;= <span class="number">20</span>:</div><div class="line">    <span class="keyword">return</span> <span class="number">2</span></div><div class="line">  <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(url, username, password)</span>:</span></div><div class="line">  session_sso = requests.Session()</div><div class="line">  paramsPost = &#123;</div><div class="line">      <span class="string">"userName"</span>: username,</div><div class="line">      <span class="string">"password"</span>: password,</div><div class="line">  &#125;</div><div class="line">  headers = &#123;<span class="string">"Accept"</span>: <span class="string">"*/*"</span>, <span class="string">"X-Requested-With"</span>: <span class="string">"XMLHttpRequest"</span>,</div><div class="line">             <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:43.0) Gecko/20100101 Firefox/43.0"</span>,</div><div class="line">             <span class="string">"Referer"</span>: <span class="string">"%s/portal/page/tio/html/login/login.html"</span> % url, <span class="string">"Connection"</span>: <span class="string">"close"</span>,</div><div class="line">             <span class="string">"Accept-Language"</span>: <span class="string">"en-US,en;q=0.5"</span>, <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>, <span class="string">"DNT"</span>: <span class="string">"1"</span>,</div><div class="line">             <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded"</span>&#125;</div><div class="line">  response = session_sso.post(<span class="string">'%s/xxx'</span> % url, data=paramsPost, headers=headers)</div><div class="line">  ...</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">submit</span><span class="params">(url, token, empNo, phase)</span>:</span></div><div class="line">  session_ops = requests.Session()</div><div class="line">  paramsGet = &#123;</div><div class="line">      <span class="string">"resourceCode"</span>: <span class="string">"operation_maintenance_paging"</span>,</div><div class="line">      <span class="string">"token"</span>: token</div><div class="line">  &#125;</div><div class="line">  response = session_ops.get(<span class="string">"%s/tokenlogin.do"</span> % url, params=paramsGet) <span class="comment"># 认证</span></div><div class="line"></div><div class="line">  response = session_ops.post(<span class="string">"%s/searchCompeteSys.do"</span> % url) <span class="comment"># 查询任务</span></div><div class="line">  tasks = json.loads(response.content, encoding=<span class="string">'utf8'</span>)</div><div class="line">  score_begin = tasks[<span class="string">'sys'</span>][<span class="string">'score'</span>]</div><div class="line">  sysName = tasks[<span class="string">'sys'</span>][<span class="string">'sysName'</span>]</div><div class="line">  task = tasks[<span class="string">'list'</span>][phase]</div><div class="line">  paramsPost = &#123;<span class="string">"sysName"</span>:sysName,<span class="string">"taskId"</span>: task[<span class="string">'id'</span>]&#125;</div><div class="line">  response = session_ops.post(<span class="string">"%s/normaltask.do"</span> % url, data=paramsPost) <span class="comment"># 提交任务</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">  url = <span class="string">''</span></div><div class="line">  username = <span class="string">''</span></div><div class="line">  password = <span class="string">''</span></div><div class="line"></div><div class="line">  phase = get_phase()</div><div class="line">  <span class="keyword">if</span> phase != <span class="number">-1</span>:</div><div class="line">    token = login(url, username, password)</div><div class="line">    submit(url, token[<span class="number">0</span>], token[<span class="number">1</span>], phase)</div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"时间未到"</span></div></pre></td></tr></table></figure>
+<h3 id="其它方法："><a href="#其它方法：" class="headerlink" title="其它方法："></a>其它方法：</h3><ul>
+<li>使用burp分析，修改提及内容或replay</li>
+<li>可用使用Chrome 插件，手动提交任务给接口，插件：<ul>
+<li><strong>ARC（advanced rest client）</strong> 中文需urlencode</li>
+<li>postman</li>
+<li>Request Make</li>
+<li>DHC （DHC Rest Client）</li>
+</ul>
+</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><strong> 任务接口其他问题：</strong></p>
+<ul>
+<li>可重复提交，不断记分</li>
+<li>可越权控制，如提交到别人的系统、taskid</li>
+<li>可别恶意攻击，由于taskid规则为5位数字，可以进行暴力攻击，把所有taskid提交完，导致前端浏览器用户看到的任务状态都已经disabled，不能提交</li>
+</ul>
+<p><strong>如何预防此类问题</strong></p>
+<ul>
+<li>反思，缺乏安全需求分析、及设计</li>
+<li>修补策略，权限控制，服务端验证。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;某IT中心举办了一个&lt;em&gt;劳动竞赛&lt;/em&gt;活动，“走进用户，一日三查”，请员工早、中、晚访问指定的IT系统，确认是否可用，为记录大家任务执行情况开发了任务系统，业务功能很简单，如访问正常，提交正常任务记1分，反之，访问异常，提交异常任务记二分并提交一个工单，定期统计各员工得分，进行排名和奖励。&lt;br&gt;由于缺乏安全评审，根据业务需求，开发考虑到员工提交任务只能在指定时间段内可用，比如早上只能提交对应早上的检查任务，不能提交中午或晚上的检查任务，所以在实现的时候增加了时间检查，实现方法是在前端JS脚本判断当前时间处于哪个检查任务阶段，只有符合条件才能提交，但是在服务端没有验证。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Web安全" scheme="https://jfsec.org/categories/Web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="JS" scheme="https://jfsec.org/tags/JS/"/>
+    
+      <category term="前端" scheme="https://jfsec.org/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MobSF - Android 安全测试框架</title>
+    <link href="https://jfsec.org/2016/05/19/MobSF/"/>
+    <id>https://jfsec.org/2016/05/19/MobSF/</id>
+    <published>2016-05-19T07:53:25.000Z</published>
+    <updated>2017-05-12T08:09:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>MobSF是一个强大的移动应用安全测试工具，可以进行静态分析和动态分析，Webg管理界面友好，还有批量静态分析脚本工具。</p>
+<p>MobSF开源移动安全测试框架</p>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ul>
+<li>后台基于django 1.8 /python2.7 ，提供web访问</li>
+<li>底层调用java 、adb等工具/脚本，运行结果存放于数据库中</li>
+</ul>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><ul>
+<li>创建 <code>virtualenv mobsf</code></li>
+<li>安装<code>pip install -r requirement.txt</code></li>
+<li>配置动态分析（可选）</li>
+<li>启动<code>manage.py runserver</code></li>
+</ul>
+<a id="more"></a>
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><ul>
+<li>使用pycharm debug跟踪，step into my code 查看程序运行逻辑。</li>
+<li>step into my code 用起来真方便，可以快速了解程序代码运行流程</li>
+</ul>
+<h2 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h2><p>通过<code>upload view</code>，上传apk、zip文件，ipa文件只能在mac下面运行。<br>上传完后，更新数据库，调用静态分析view，此次程序代码较长</p>
+<p><strong>静态分析，主要功能：</strong></p>
+<ul>
+<li>签名信息</li>
+<li>组件安全</li>
+<li>等</li>
+</ul>
+<h2 id="动态分析"><a href="#动态分析" class="headerlink" title="动态分析"></a>动态分析</h2><p>昨天晚上花费二个小时，调通动态测试环境，作者提供的虚拟机是基于genymotion创建，在mac下面运行不稳定，老是异常退出。<br>解决办法，新建一个4.1的虚拟机，运行后，再次运行mobsfy.py 安装测试所需软件，具体参照mobsf wiki 文档，主要注意点：</p>
+<ul>
+<li>virtualbox网卡ip地址配置，建议配置192.168.56.1，dhcp 192.168.56.100，当然也可以自行配置，关键是知道虚拟机IP</li>
+<li>重启，安装软件过程中，需要重启，直接关闭genymotion shell，再运行即可</li>
+</ul>
+<p>修改django settings，替换UUID、SUUID，UUID和SUUID可从从虚拟机配置文件查看获取</p>
+<p>运行<code>python manage.py runserver</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MobSF是一个强大的移动应用安全测试工具，可以进行静态分析和动态分析，Webg管理界面友好，还有批量静态分析脚本工具。&lt;/p&gt;
+&lt;p&gt;MobSF开源移动安全测试框架&lt;/p&gt;
+&lt;h2 id=&quot;架构&quot;&gt;&lt;a href=&quot;#架构&quot; class=&quot;headerlink&quot; title=&quot;架构&quot;&gt;&lt;/a&gt;架构&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;后台基于django 1.8 /python2.7 ，提供web访问&lt;/li&gt;
+&lt;li&gt;底层调用java 、adb等工具/脚本，运行结果存放于数据库中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;环境搭建&quot;&gt;&lt;a href=&quot;#环境搭建&quot; class=&quot;headerlink&quot; title=&quot;环境搭建&quot;&gt;&lt;/a&gt;环境搭建&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;创建 &lt;code&gt;virtualenv mobsf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装&lt;code&gt;pip install -r requirement.txt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;配置动态分析（可选）&lt;/li&gt;
+&lt;li&gt;启动&lt;code&gt;manage.py runserver&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="移动安全" scheme="https://jfsec.org/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="Android" scheme="https://jfsec.org/tags/Android/"/>
+    
+      <category term="MobSF" scheme="https://jfsec.org/tags/MobSF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>弱密码扫描开源工具</title>
+    <link href="https://jfsec.org/2016/04/26/changeme/"/>
+    <id>https://jfsec.org/2016/04/26/changeme/</id>
+    <published>2016-04-26T02:00:17.000Z</published>
+    <updated>2017-05-12T08:12:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>介绍一个弱密码扫描开源工具，<a href="https://github.com/ztgrace/changeme" target="_blank" rel="external">changme</a>，支持以下组件:</p>
+<ul>
+<li>Apache Tomcat</li>
+<li>JBoss</li>
+<li>Websphere</li>
+<li>Zabbix</li>
+<li>…</li>
+</ul>
+<p>支持自定义添加密码检查</p>
+<a id="more"></a>
+<h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><p>扫描一个网段: <code>./changeme.py -s 192.168.59.0/24</code></p>
+<p>扫描单个主机: <code>./changeme.py -s 192.168.59.100</code></p>
+<p>指定组件名称: <code>./changeme.py -s 192.168.59.0/24 -n &quot;Apache Tomcat&quot; --timeout 5</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;介绍一个弱密码扫描开源工具，&lt;a href=&quot;https://github.com/ztgrace/changeme&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;changme&lt;/a&gt;，支持以下组件:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Apache Tomcat&lt;/li&gt;
+&lt;li&gt;JBoss&lt;/li&gt;
+&lt;li&gt;Websphere&lt;/li&gt;
+&lt;li&gt;Zabbix&lt;/li&gt;
+&lt;li&gt;…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;支持自定义添加密码检查&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="弱密码" scheme="https://jfsec.org/categories/%E5%BC%B1%E5%AF%86%E7%A0%81/"/>
+    
+    
+      <category term="tools" scheme="https://jfsec.org/tags/tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BeEF</title>
+    <link href="https://jfsec.org/2015/11/16/BeEF/"/>
+    <id>https://jfsec.org/2015/11/16/BeEF/</id>
+    <published>2015-11-16T08:13:18.000Z</published>
+    <updated>2017-05-12T08:21:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>BeEF是浏览器攻击框架的简称，是一款专注于浏览器端的渗透测试工具。</p>
+<h3 id="BeEF攻击浏览器依赖Javascript"><a href="#BeEF攻击浏览器依赖Javascript" class="headerlink" title="BeEF攻击浏览器依赖Javascript"></a>BeEF攻击浏览器依赖Javascript</h3><p>主流浏览器均支持JS。</p>
+<p>能控制浏览器完成各种任务：</p>
+<ul>
+<li>浏览页面截屏</li>
+<li>利用浏览器主机作为代理渗透内网</li>
+<li>社交工程攻击</li>
+</ul>
+<a id="more"></a>
+<h3 id="BeEF使用基础"><a href="#BeEF使用基础" class="headerlink" title="BeEF使用基础"></a>BeEF使用基础</h3><h4 id="如何hook-浏览器？"><a href="#如何hook-浏览器？" class="headerlink" title="如何hook 浏览器？"></a>如何hook 浏览器？</h4><ul>
+<li>中间人攻击 MITMf</li>
+<li>钓鱼、垃圾邮件</li>
+<li>恶意网站注入JS</li>
+</ul>
+<h4 id="如何unhook-感染的浏览器？"><a href="#如何unhook-感染的浏览器？" class="headerlink" title="如何unhook 感染的浏览器？"></a>如何unhook 感染的浏览器？</h4><ul>
+<li>run unhook(Commands  Browser Unhook)</li>
+</ul>
+<h4 id="如何持久化感染的浏览器？"><a href="#如何持久化感染的浏览器？" class="headerlink" title="如何持久化感染的浏览器？"></a>如何持久化感染的浏览器？</h4><ul>
+<li>集成Metaspolit</li>
+<li>hook 浏览器当前domain</li>
+<li>运行 Metasploit 模块进行攻击测试</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;BeEF是浏览器攻击框架的简称，是一款专注于浏览器端的渗透测试工具。&lt;/p&gt;
+&lt;h3 id=&quot;BeEF攻击浏览器依赖Javascript&quot;&gt;&lt;a href=&quot;#BeEF攻击浏览器依赖Javascript&quot; class=&quot;headerlink&quot; title=&quot;BeEF攻击浏览器依赖Javascript&quot;&gt;&lt;/a&gt;BeEF攻击浏览器依赖Javascript&lt;/h3&gt;&lt;p&gt;主流浏览器均支持JS。&lt;/p&gt;
+&lt;p&gt;能控制浏览器完成各种任务：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;浏览页面截屏&lt;/li&gt;
+&lt;li&gt;利用浏览器主机作为代理渗透内网&lt;/li&gt;
+&lt;li&gt;社交工程攻击&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>

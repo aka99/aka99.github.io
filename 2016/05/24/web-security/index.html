@@ -99,7 +99,7 @@
 <meta property="og:url" content="https://jfsec.org/2016/05/24/web-security/index.html">
 <meta property="og:site_name" content="信息安全实践流水账">
 <meta property="og:description" content="背景某IT中心举办了一个劳动竞赛活动，“走进用户，一日三查”，请员工早、中、晚访问指定的IT系统，确认是否可用，为记录大家任务执行情况开发了任务系统，业务功能很简单，如访问正常，提交正常任务记1分，反之，访问异常，提交异常任务记二分并提交一个工单，定期统计各员工得分，进行排名和奖励。由于缺乏安全评审，根据业务需求，开发考虑到员工提交任务只能在指定时间段内可用，比如早上只能提交对应早上的检查任务，不">
-<meta property="og:updated_time" content="2017-05-12T06:57:06.000Z">
+<meta property="og:updated_time" content="2017-06-16T06:17:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="走进用户劳动竞赛故事">
 <meta name="twitter:description" content="背景某IT中心举办了一个劳动竞赛活动，“走进用户，一日三查”，请员工早、中、晚访问指定的IT系统，确认是否可用，为记录大家任务执行情况开发了任务系统，业务功能很简单，如访问正常，提交正常任务记1分，反之，访问异常，提交异常任务记二分并提交一个工单，定期统计各员工得分，进行排名和奖励。由于缺乏安全评审，根据业务需求，开发考虑到员工提交任务只能在指定时间段内可用，比如早上只能提交对应早上的检查任务，不">
@@ -348,19 +348,6 @@
           
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/05/24/web-security/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/05/24/web-security/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
 
           
           
@@ -490,8 +477,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/10/appsec-req-std/" rel="prev" title="应用系统安全通用技术要求">
-                应用系统安全通用技术要求 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/07/19/honeypot/" rel="prev" title="开源蜜罐系统MHN部署备忘录">
+                开源蜜罐系统MHN部署备忘录 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -516,17 +503,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -571,7 +547,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -582,7 +558,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -593,7 +569,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -646,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初步分析"><span class="nav-text">初步分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试验证"><span class="nav-text">测试验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在Chrome-中修改JS-函数逻辑，去掉JS时间限制"><span class="nav-text">在Chrome 中修改JS 函数逻辑，去掉JS时间限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本"><span class="nav-text">自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它方法："><span class="nav-text">其它方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初步分析"><span class="nav-number">2.</span> <span class="nav-text">初步分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试验证"><span class="nav-number">3.</span> <span class="nav-text">测试验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在Chrome-中修改JS-函数逻辑，去掉JS时间限制"><span class="nav-number">3.1.</span> <span class="nav-text">在Chrome 中修改JS 函数逻辑，去掉JS时间限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本"><span class="nav-number">3.2.</span> <span class="nav-text">自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它方法："><span class="nav-number">3.3.</span> <span class="nav-text">其它方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>
@@ -778,26 +754,6 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://jfsec.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://jfsec.org/2016/05/24/web-security/';
-          this.page.identifier = '2016/05/24/web-security/';
-          this.page.title = '走进用户劳动竞赛故事';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://jfsec.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
 
 
 
@@ -816,6 +772,10 @@
   
 
 
+
+
+
+  
 
 
 

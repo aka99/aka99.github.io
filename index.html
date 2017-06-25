@@ -80,7 +80,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="信息安全实践流水账" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="信息安全实践备忘录" type="application/atom+xml" />
 
 
 
@@ -94,12 +94,12 @@
 
 <meta name="description" content="应用安全 安全设计 渗透测试 开发安全 移动安全 安全架构 安全测试">
 <meta property="og:type" content="website">
-<meta property="og:title" content="信息安全实践流水账">
+<meta property="og:title" content="信息安全实践备忘录">
 <meta property="og:url" content="https://jfsec.org/index.html">
-<meta property="og:site_name" content="信息安全实践流水账">
+<meta property="og:site_name" content="信息安全实践备忘录">
 <meta property="og:description" content="应用安全 安全设计 渗透测试 开发安全 移动安全 安全架构 安全测试">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="信息安全实践流水账">
+<meta name="twitter:title" content="信息安全实践备忘录">
 <meta name="twitter:description" content="应用安全 安全设计 渗透测试 开发安全 移动安全 安全架构 安全测试">
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <title>信息安全实践流水账</title>
+  <title>信息安全实践备忘录</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -181,7 +181,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">信息安全实践流水账</span>
+        <span class="site-title">信息安全实践备忘录</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -226,12 +226,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
           </a>
         </li>
       
@@ -246,12 +246,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            标签
+            关于
           </a>
         </li>
       
@@ -284,16 +284,16 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://jfsec.org/2017/06/16/recon-ng/">
+    <link itemprop="mainEntityOfPage" href="https://jfsec.org/2017/06/16/apache-log/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -303,7 +303,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/16/recon-ng/" itemprop="url">recon-ng 使用更新</a></h2>
+                <a class="post-title-link" href="/2017/06/16/apache-log/" itemprop="url">基于业务流程的Web访问日志分析</a></h2>
         
 
         <div class="post-meta">
@@ -338,8 +338,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OSINT/" itemprop="url" rel="index">
-                    <span itemprop="name">OSINT</span>
+                  <a href="/categories/安全运维/" itemprop="url" rel="index">
+                    <span itemprop="name">安全运维</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/安全运维/大数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据分析</span>
                   </a>
                 </span>
 
@@ -371,10 +382,151 @@
 
       
         
-          <p>OSINT 工具 <a href="https://bitbucket.org/LaNMaSteR53/recon-ng" target="_blank" rel="external">recon-ng</a></p>
+          <p>最近为配合排查，拿到了应用系统的Web访问日志，日志数据量每天约200M，如何进行分析，常见的做法是有几种：</p>
+<ul>
+<li>使用Elastic Stack进行采集、处理和查询</li>
+<li>单机上运行工具分析</li>
+</ul>
+<p>由于日志量不大，加上需要精准分析不同时段访问行为，决定采用单机上运行工具分析。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/06/16/recon-ng/#more" rel="contents">
+            <a class="btn" href="/2017/06/16/apache-log/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://jfsec.org/2017/06/12/recon-ng/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tony Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="信息安全实践备忘录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/12/recon-ng/" itemprop="url">开源威胁情报工具recon-ng使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T14:17:49+08:00">
+                2017-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/威胁情报/" itemprop="url" rel="index">
+                    <span itemprop="name">威胁情报</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><a href="https://bitbucket.org/LaNMaSteR53/recon-ng" target="_blank" rel="external">recon-ng</a> 是个强大的框架式的被动信息收集工具（OSINT），好久没用，今天试了一下发现很多模块已去掉了，比如baidu,在Mac上更新了一下,新版增加许多功能，比如开启web服务，查询数据库记录，很方便导出数据。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/12/recon-ng/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -425,11 +577,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -439,7 +591,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/19/weak-password-abc/" itemprop="url">应用系统弱密码之痛</a></h2>
+                <a class="post-title-link" href="/2017/05/19/weak-password-abc/" itemprop="url">应用系统弱口令之痛</a></h2>
         
 
         <div class="post-meta">
@@ -507,7 +659,8 @@
 
       
         
-          <p>企业内部的应用系统弱密码管理是个比较有意思的话题，以企业现有的应用架构，已启用了强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱密码问题了，实际情况又是如何呢？</p>
+          <p>弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。 </p>
+<p>组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱口令问题了，实际情况又是如何呢？</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/19/weak-password-abc/#more" rel="contents">
@@ -561,11 +714,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -697,11 +850,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -838,11 +991,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -985,11 +1138,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -1130,11 +1283,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -1266,11 +1419,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -1403,11 +1556,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -1531,148 +1684,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://jfsec.org/2016/08/02/wooyun/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tony Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/02/wooyun/" itemprop="url">Wooyun 漏洞库及Drop文章</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-02T15:26:17+08:00">
-                2016-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/漏洞分享/" itemprop="url" rel="index">
-                    <span itemprop="name">漏洞分享</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>乌云网存在对广大安全从业人员来说有不少用途，比如查看各类安全技术文章及攻击案例，通过详细的漏洞信息，间接推动组织提升应用系统安全，促进持续应用安全测试。</p>
-<h2 id="乌云漏洞库本地查询步骤"><a href="#乌云漏洞库本地查询步骤" class="headerlink" title="乌云漏洞库本地查询步骤"></a>乌云漏洞库本地查询步骤</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/08/02/wooyun/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1705,7 +1721,7 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460"
+               src="/images/avatar.gif"
                alt="Tony Zhou" />
           <p class="site-author-name" itemprop="name">Tony Zhou</p>
            
@@ -1717,7 +1733,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1728,7 +1744,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1739,7 +1755,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

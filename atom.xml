@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>信息安全实践流水账</title>
+  <title>信息安全实践备忘录</title>
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jfsec.org/"/>
-  <updated>2017-06-16T09:03:42.000Z</updated>
+  <updated>2017-06-25T08:18:16.000Z</updated>
   <id>https://jfsec.org/</id>
   
   <author>
@@ -16,44 +16,114 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>recon-ng 使用更新</title>
-    <link href="https://jfsec.org/2017/06/16/recon-ng/"/>
-    <id>https://jfsec.org/2017/06/16/recon-ng/</id>
+    <title>基于业务流程的Web访问日志分析</title>
+    <link href="https://jfsec.org/2017/06/16/apache-log/"/>
+    <id>https://jfsec.org/2017/06/16/apache-log/</id>
     <published>2017-06-16T06:17:49.000Z</published>
-    <updated>2017-06-16T09:03:42.000Z</updated>
+    <updated>2017-06-25T08:18:16.000Z</updated>
     
-    <content type="html"><![CDATA[<p>OSINT 工具 <a href="https://bitbucket.org/LaNMaSteR53/recon-ng" target="_blank" rel="external">recon-ng</a></p>
+    <content type="html"><![CDATA[<p>最近为配合排查，拿到了应用系统的Web访问日志，日志数据量每天约200M，如何进行分析，常见的做法是有几种：</p>
+<ul>
+<li>使用Elastic Stack进行采集、处理和查询</li>
+<li>单机上运行工具分析</li>
+</ul>
+<p>由于日志量不大，加上需要精准分析不同时段访问行为，决定采用单机上运行工具分析。</p>
 <a id="more"></a>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li>Clone the Recon-ng repository.<ul>
-<li>git clone <a href="https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git" target="_blank" rel="external">https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git</a></li>
+<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="问题：某内部应用系统服务资源消耗剧增"><a href="#问题：某内部应用系统服务资源消耗剧增" class="headerlink" title="问题：某内部应用系统服务资源消耗剧增"></a>问题：某内部应用系统服务资源消耗剧增</h2><h2 id="方案：基于业务流程的Web访问日志分析"><a href="#方案：基于业务流程的Web访问日志分析" class="headerlink" title="方案：基于业务流程的Web访问日志分析"></a>方案：基于业务流程的Web访问日志分析</h2><p>步骤1:政策业务范围流程是什么<br>步骤3:涉及哪些服务接口访问<br>步骤3:各个接口不同时间段请求情况</p>
+<p>怎么做： </p>
+<ul>
+<li>访问业务系统看看</li>
+<li>使用burp suite记录url相关资源</li>
+<li>分析web日志</li>
 </ul>
-</li>
-<li>Change into the Recon-ng directory.<ul>
-<li>cd recon-ng</li>
+<h2 id="日志分析工具："><a href="#日志分析工具：" class="headerlink" title="日志分析工具："></a>日志分析工具：</h2><ul>
+<li><a href="https://goaccess.io/" target="_blank" rel="external">GoAccess - Visual Web Log Analyzer</a> 高性能日志分析工具</li>
+<li><a href="pandas.pydata.org">Pandas</a> Python 数据分析工具</li>
 </ul>
-</li>
-<li>Install dependencies.<ul>
-<li>pip install -r REQUIREMENTS</li>
+<h1 id="使用goaccess快速分析"><a href="#使用goaccess快速分析" class="headerlink" title="使用goaccess快速分析"></a>使用goaccess快速分析</h1><p><strong>首先</strong>使用goaccess快速分析一下，goaccess 功能很强大，10几秒轻松分析完成几百万条日志，具体使用请参考官方文档，结果如下图</p>
+<p><img src="http://opmk280rf.bkt.clouddn.com/58334ce8244ff3bae73dbda9d2a8f88a.jpg" alt=""></p>
+<blockquote>
+<p>马赛克部分为具体数据内容</p>
+</blockquote>
+<ul>
+<li>获取访问源ip</li>
+<li>获取多url</li>
+<li>时间段</li>
 </ul>
-</li>
-<li>Launch Recon-ng.<ul>
-<li>./recon-ng</li>
+<p><strong>接着</strong>使用pandas进分析</p>
+<h1 id="使用pandas进行日志解析"><a href="#使用pandas进行日志解析" class="headerlink" title="使用pandas进行日志解析"></a>使用pandas进行日志解析</h1><h2 id="读取日志"><a href="#读取日志" class="headerlink" title="读取日志"></a>读取日志</h2><p>Pandas 需要十几秒加载几百万条日志</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">import</span> pytz</div><div class="line"><span class="keyword">import</span> re</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div><div class="line">pd.set_option(<span class="string">'display.max_colwidth'</span>, <span class="number">100</span>)</div><div class="line">%pylab inline</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_str</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> x[<span class="number">1</span>:<span class="number">-1</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_datetime</span><span class="params">(x)</span>:</span></div><div class="line">    dt = datetime.strptime(x[<span class="number">1</span>:<span class="number">-7</span>], <span class="string">'%d/%b/%Y:%H:%M:%S'</span>)</div><div class="line">    dt_tz = int(x[<span class="number">-6</span>:<span class="number">-3</span>])*<span class="number">60</span>+int(x[<span class="number">-3</span>:<span class="number">-1</span>])    </div><div class="line">    <span class="keyword">return</span> dt.replace(tzinfo=pytz.FixedOffset(dt_tz))</div><div class="line"></div><div class="line">data = pd.read_csv(<span class="string">'~/Downloads/web_logs/access_20170614.log'</span>, </div><div class="line">    sep=<span class="string">r'\s(?=(?:[^"]*"[^"]*")*[^"]*$)(?![^\[]*\])'</span>, </div><div class="line">    engine=<span class="string">'python'</span>, </div><div class="line">    na_values=<span class="string">'-'</span>, </div><div class="line">    header=<span class="keyword">None</span>,</div><div class="line">    usecols=[<span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</div><div class="line">    names=[<span class="string">'ip'</span>, <span class="string">'time'</span>, <span class="string">'request'</span>, <span class="string">'status'</span>, <span class="string">'size'</span>, <span class="string">'referer'</span>, <span class="string">'user_agent'</span>],</div><div class="line">    converters=&#123;<span class="string">'time'</span>: parse_datetime,</div><div class="line">                <span class="string">'request'</span>: parse_str,</div><div class="line">                <span class="string">'status'</span>: int,</div><div class="line">                <span class="string">'size'</span>: int,</div><div class="line">                <span class="string">'referer'</span>: parse_str,</div><div class="line">                <span class="string">'user_agent'</span>: parse_str&#125;)</div></pre></td></tr></table></figure>
+<h2 id="数据整理"><a href="#数据整理" class="headerlink" title="数据整理"></a>数据整理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">data = data[pd.notnull(data[<span class="string">'request'</span>])]</div><div class="line"></div><div class="line">request = data.pop(<span class="string">'request'</span>).str.split()</div><div class="line">data[<span class="string">'method'</span>] = request.str[<span class="number">0</span>]</div><div class="line">data[<span class="string">'resource'</span>] = request.str[<span class="number">1</span>]</div><div class="line"></div><div class="line">data = data[pd.notnull(data[<span class="string">'resource'</span>])]</div><div class="line"></div><div class="line"><span class="comment"># 去除静态资源访问</span></div><div class="line">data_req = data[~data[<span class="string">'resource'</span>].str.match(</div><div class="line">    <span class="string">r'^/loan/css/|^/media|^/static|^/admin|^/robots.txt$|^/favicon.ico$'</span>)]</div></pre></td></tr></table></figure>
+<h2 id="业务流程日志分析"><a href="#业务流程日志分析" class="headerlink" title="业务流程日志分析"></a>业务流程日志分析</h2><p><strong>正常操作请求流程如下：</strong></p>
+<ol>
+<li>先访问<code>A接口</code> </li>
+<li>再访问<code>B接口</code></li>
+<li>最后访问<code>C接口</code>  </li>
+</ol>
+<h3 id="提取A、B、C接口数据"><a href="#提取A、B、C接口数据" class="headerlink" title="提取A、B、C接口数据"></a>提取A、B、C接口数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">my_abc = data_req[data_req[<span class="string">'resource'</span>].str.match(<span class="string">r'^/A|/B|/C'</span>)]</div></pre></td></tr></table></figure>
+<blockquote>
+<p>A, B, C 为接口名称</p>
+</blockquote>
+<h3 id="三个接口访问情况"><a href="#三个接口访问情况" class="headerlink" title="三个接口访问情况"></a>三个接口访问情况</h3><p>数据透视图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">my_abc.pivot_table(index=my_loan2.index.hour, </div><div class="line">                     columns=<span class="string">'resource'</span>, </div><div class="line">                     values=<span class="string">'status'</span>, </div><div class="line">                     aggfunc=<span class="string">'count'</span>,</div><div class="line">                             ).plot()</div></pre></td></tr></table></figure>
+<p><img src="http://opmk280rf.bkt.clouddn.com/86f771322cdae0f9bc18be62eda71ab5.png" alt=""></p>
+<p>异常分析：</p>
+<ul>
+<li>正常情况下，会依次访问接口A、B、C</li>
+<li>A、B、C 访问量基本相同 </li>
+<li><code>接口C</code> 在15-18时访问量走势明显异常</li>
 </ul>
-</li>
-<li>Use the “-h” switch for information on runtime options.<ul>
-<li>./recon-ng -h</li>
-</ul>
-</li>
-</ul>
-<h2 id="一般使用流程"><a href="#一般使用流程" class="headerlink" title="一般使用流程"></a>一般使用流程</h2><p>设置api: keys add </p>
-<p>创建工作区：workspaces add test<br>添加域名：add domains tesst.cn</p>
-<p>查找模块：search name<br>使用模块：use name<br>查看模块信息：show info<br>查看需要设置的参数：show options<br>设置参数：set SOURCE …</p>
-<h2 id="申请api-keys"><a href="#申请api-keys" class="headerlink" title="申请api keys"></a>申请api keys</h2><ul>
-<li>shodan 5刀买的</li>
+<h3 id="结论：接口C-在15-18时访问量走势明显异常"><a href="#结论：接口C-在15-18时访问量走势明显异常" class="headerlink" title="结论：接口C 在15-18时访问量走势明显异常"></a>结论：接口C 在15-18时访问量走势明显异常</h3><h1 id="后续处理-略…"><a href="#后续处理-略…" class="headerlink" title="后续处理 略…"></a>后续处理 略…</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近为配合排查，拿到了应用系统的Web访问日志，日志数据量每天约200M，如何进行分析，常见的做法是有几种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用Elastic Stack进行采集、处理和查询&lt;/li&gt;
+&lt;li&gt;单机上运行工具分析&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由于日志量不大，加上需要精准分析不同时段访问行为，决定采用单机上运行工具分析。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="安全运维" scheme="https://jfsec.org/categories/%E5%AE%89%E5%85%A8%E8%BF%90%E7%BB%B4/"/>
+    
+      <category term="大数据分析" scheme="https://jfsec.org/categories/%E5%AE%89%E5%85%A8%E8%BF%90%E7%BB%B4/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="Web" scheme="https://jfsec.org/tags/Web/"/>
+    
+      <category term="数据分析" scheme="https://jfsec.org/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开源威胁情报工具recon-ng使用</title>
+    <link href="https://jfsec.org/2017/06/12/recon-ng/"/>
+    <id>https://jfsec.org/2017/06/12/recon-ng/</id>
+    <published>2017-06-12T06:17:49.000Z</published>
+    <updated>2017-06-25T08:44:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://bitbucket.org/LaNMaSteR53/recon-ng" target="_blank" rel="external">recon-ng</a> 是个强大的框架式的被动信息收集工具（OSINT），好久没用，今天试了一下发现很多模块已去掉了，比如baidu,在Mac上更新了一下,新版增加许多功能，比如开启web服务，查询数据库记录，很方便导出数据。</p>
+<a id="more"></a>
+<h2 id="安装或更新"><a href="#安装或更新" class="headerlink" title="安装或更新"></a>安装或更新</h2><p>更新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull</div></pre></td></tr></table></figure></p>
+<p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">* Clone the Recon-ng repository.</div><div class="line">    * git clone https://LaNMaSteR53@bitbucket.org/LaNMaSteR53/recon-ng.git</div><div class="line">* Change into the Recon-ng directory.</div><div class="line">    * cd recon-ng</div><div class="line">* Install dependencies.</div><div class="line">    * pip install -r REQUIREMENTS</div><div class="line">* Launch Recon-ng.</div><div class="line">    * ./recon-ng</div><div class="line">* Use the &quot;-h&quot; switch for information on runtime options.</div><div class="line">    * ./recon-ng -h</div></pre></td></tr></table></figure></p>
+<h2 id="一般使用流程"><a href="#一般使用流程" class="headerlink" title="一般使用流程"></a>一般使用流程</h2><p>设置api:<br><code>keys add</code></p>
+<blockquote>
+<p>申请api keys</p>
+<ul>
+<li>shodan 某年黑色星期五5刀买的</li>
 <li>ipinfodb 免费</li>
 </ul>
-<h2 id="域名IP模块"><a href="#域名IP模块" class="headerlink" title="域名IP模块"></a>域名IP模块</h2><p>DNS信息收集、IP地址解释</p>
+</blockquote>
+<p>创建工作区：<br><code>workspaces add test</code></p>
+<p>添加域名：<br><code>add domains test.cn</code></p>
+<p>查找模块：<br><code>search name</code></p>
+<p>使用模块：<br><code>use name</code></p>
+<p>查看模块信息：<br><code>show info</code></p>
+<p>查看需要设置的参数：<br><code>show options</code></p>
+<p>设置参数：<br><code>set SOURCE ...</code></p>
+<h2 id="常用模块"><a href="#常用模块" class="headerlink" title="常用模块"></a>常用模块</h2><p>DNS信息收集、IP地址解释</p>
 <ul>
 <li>brute_hosts</li>
 <li>bing_domain_web</li>
@@ -65,7 +135,6 @@
 <ul>
 <li>shodan_ip</li>
 </ul>
-<p><img src="http://opmk280rf.bkt.clouddn.com/4db3c5f4fef306540b104f97d765bc07.jpg" alt=""></p>
 <p>用户账号枚举</p>
 <ul>
 <li>profile</li>
@@ -79,16 +148,20 @@
 <li>xlsx</li>
 <li>reporting/csv</li>
 </ul>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>添加域名<br><code>add domains test.cn</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">use brute_hosts</div><div class="line">run</div><div class="line"></div><div class="line">use bing_domain_web</div><div class="line">run</div><div class="line"></div><div class="line">use  recon/hosts-hosts/resolve</div><div class="line">run</div><div class="line"></div><div class="line">use ipinfodb</div><div class="line">run</div><div class="line"></div><div class="line">use shodan_ip</div><div class="line">run</div></pre></td></tr></table></figure>
+<p><code>show hosts</code><br><img src="http://opmk280rf.bkt.clouddn.com/4f2cb0b058faae8744b39e9246de38df.jpg" alt=""></p>
+<p><code>show ports</code><br><img src="http://opmk280rf.bkt.clouddn.com/8e3fc341837a0efddea33ddb94111cb1.jpg" alt=""></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://raikia.com/recon-ng-api-key-creation/" target="_blank" rel="external">Recon-ng API Key Creation</a><br><a href="http://opmk280rf.bkt.clouddn.com/9eff6614490054ff1134946b2a55948e.pdf" target="_blank" rel="external">recon-ng guide</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;OSINT 工具 &lt;a href=&quot;https://bitbucket.org/LaNMaSteR53/recon-ng&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;recon-ng&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;https://bitbucket.org/LaNMaSteR53/recon-ng&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;recon-ng&lt;/a&gt; 是个强大的框架式的被动信息收集工具（OSINT），好久没用，今天试了一下发现很多模块已去掉了，比如baidu,在Mac上更新了一下,新版增加许多功能，比如开启web服务，查询数据库记录，很方便导出数据。&lt;/p&gt;
     
     </summary>
     
-      <category term="OSINT" scheme="https://jfsec.org/categories/OSINT/"/>
+      <category term="威胁情报" scheme="https://jfsec.org/categories/%E5%A8%81%E8%83%81%E6%83%85%E6%8A%A5/"/>
     
     
       <category term="OSINT" scheme="https://jfsec.org/tags/OSINT/"/>
@@ -96,20 +169,58 @@
   </entry>
   
   <entry>
-    <title>应用系统弱密码之痛</title>
+    <title>应用系统弱口令之痛</title>
     <link href="https://jfsec.org/2017/05/19/weak-password-abc/"/>
     <id>https://jfsec.org/2017/05/19/weak-password-abc/</id>
     <published>2017-05-19T09:29:43.000Z</published>
-    <updated>2017-06-16T06:17:02.000Z</updated>
+    <updated>2017-06-25T06:56:49.000Z</updated>
     
-    <content type="html"><![CDATA[<p>企业内部的应用系统弱密码管理是个比较有意思的话题，以企业现有的应用架构，已启用了强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱密码问题了，实际情况又是如何呢？</p>
+    <content type="html"><![CDATA[<p>弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。 </p>
+<p>组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱口令问题了，实际情况又是如何呢？</p>
 <a id="more"></a>
-<h3 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h3><p>最近根据要求，对某个内部系统弱密码进行了抽查，采用的方法是依据系统存放密码的算法，准备了有单位特征十几个弱密码hash，与数据库记录进行比对，发现居然命中了30%以上弱密码，这个值得深思，许多人喜欢简单易记密码，比如<code>xxxx1234</code>,<code>xxxx@Wsx</code>等等。</p>
-<p><img src="http://opmk280rf.bkt.clouddn.com/447104c930993f7bb816ca4b90c48d3a.jpg" alt=""></p>
-<p><img src="http://opmk280rf.bkt.clouddn.com/8f915a945f44314722c21a5296e8f63a.jpg" alt=""></p>
-<p><img src="http://opmk280rf.bkt.clouddn.com/deca4dcb84a1a04e85005339aa9cad64.jpg" alt=""></p>
-<h3 id="怎么办？"><a href="#怎么办？" class="headerlink" title="怎么办？"></a>怎么办？</h3><p>赶紧通知各部门进行修改，如不及时修改，通报批评，后续加强安全意识宣导。</p>
-<h3 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h3><ul>
+<h3 id="引子：强安全策略下也有弱口令"><a href="#引子：强安全策略下也有弱口令" class="headerlink" title="引子：强安全策略下也有弱口令"></a>引子：强安全策略下也有弱口令</h3><p>最近对某个内部系统口令进行了抽查，准备了有十几个强安全策略下的弱口令进行比对，弱口令命中了率居然达到了30%。</p>
+<h3 id="行业痛点"><a href="#行业痛点" class="headerlink" title="行业痛点"></a>行业痛点</h3><p>许多组织强安全策略下的弱口令的典型特征是：<code>xxxxxxx</code>（ 企业名称字母缩写） + <code>简单数字</code>，如：</p>
+<ul>
+<li>xxxxxx1111</li>
+<li>xxxxxx2222</li>
+<li>xxxxxx8888</li>
+<li>…</li>
+</ul>
+<p>关于应用系统弱口令的问题，根据乌云漏洞平台2012.1-2015.4的公布的数据，抓取后分析发现<code>弱口令</code>共3763个，漏洞排名第五位。</p>
+<p><img src="http://opmk280rf.bkt.clouddn.com/69db2f0b1631a40d94a7d119dabed8e4.jpg" alt=""></p>
+<h3 id="弱口令规律"><a href="#弱口令规律" class="headerlink" title="弱口令规律"></a>弱口令规律</h3><p>参照前几年CSDN泄漏的600万用户口数据, 看看有何规律：</p>
+<p>先看一下TOP10，如下图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">top = df.password.value_counts()</div><div class="line">fig, ax = plt.subplots(figsize=(<span class="number">10</span>,<span class="number">5</span>))</div><div class="line">ax.set_ylabel(<span class="string">u'密码'</span>, fontsize=<span class="number">16</span>)</div><div class="line">ax.set_xlabel(<span class="string">u'数量'</span>, fontsize=<span class="number">16</span>)</div><div class="line">ax.set_title(<span class="string">u'CSDN Top10 密码'</span>, fontsize=<span class="number">18</span>, y=<span class="number">1.01</span>)</div><div class="line">top[:<span class="number">10</span>].plot(kind=<span class="string">'barh'</span>)</div><div class="line">plt.gca().invert_yaxis()</div></pre></td></tr></table></figure>
+<p><img src="http://opmk280rf.bkt.clouddn.com/cd6fc30ee08f991ede14bda0627bb35d.jpg" alt=""></p>
+<p><strong>TOP10密码、数量</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">123456789     235012</div><div class="line">12345678      212749</div><div class="line">11111111       76346</div><div class="line">dearbook       46053</div><div class="line">00000000       34952</div><div class="line">123123123      19986</div><div class="line">1234567890     17790</div><div class="line">88888888       15033</div><div class="line">111111111       6995</div><div class="line">147258369       5965</div></pre></td></tr></table></figure>
+<p><strong>TOP10密码</strong>中有9个均是纯数字密码，规律如下：</p>
+<ul>
+<li>连续的数字 123456789 12345678 1234567890</li>
+<li>重复的数字 11111111 00000000 88888888 111111111 </li>
+<li>连续加重复 123123123</li>
+<li>数字键盘 147258369</li>
+</ul>
+<p>显然，在设置密码方面，大家的喜好有点相似，喜欢简单易记的，特别是上面的数字规律。</p>
+<h3 id="如何应对"><a href="#如何应对" class="headerlink" title="如何应对"></a>如何应对</h3><p>加强管理：弱口令这一块的应对，要加强：</p>
+<ul>
+<li>安全意识培训、</li>
+<li>强制密码策略、</li>
+<li>使用外部公开的社工库进行匹配</li>
+<li>加上惩罚措施，让员工对此产生敬畏之心</li>
+</ul>
+<p>技术手段：</p>
+<ul>
+<li>加入二次验证功能</li>
+</ul>
+<p>如何设置一个安全、牢固、可靠的密码？</p>
+<ul>
+<li>使用大写字母和小写字母、标点和数字的集合 </li>
+<li>有规律地更换密码</li>
+<li>不要使用和你有关的姓名和数字，如出生日期或是绰号。</li>
+<li>不要使用可轻易获得的关于你的信息。这包括执照号码、电话号码、身份证号码、手机号码、所居住的街道的名字等等</li>
+</ul>
+<h3 id="总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。"><a href="#总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。" class="headerlink" title="总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。"></a>总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。</h3><h3 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h3><ul>
 <li>jupyter notebook</li>
 <li>pandas</li>
 <li>matplotlib</li>
@@ -118,7 +229,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;企业内部的应用系统弱密码管理是个比较有意思的话题，以企业现有的应用架构，已启用了强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱密码问题了，实际情况又是如何呢？&lt;/p&gt;
+      &lt;p&gt;弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。 &lt;/p&gt;
+&lt;p&gt;组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱口令问题了，实际情况又是如何呢？&lt;/p&gt;
     
     </summary>
     
@@ -128,6 +240,8 @@
       <category term="弱口令" scheme="https://jfsec.org/tags/%E5%BC%B1%E5%8F%A3%E4%BB%A4/"/>
     
       <category term="弱密码" scheme="https://jfsec.org/tags/%E5%BC%B1%E5%AF%86%E7%A0%81/"/>
+    
+      <category term="数据分析" scheme="https://jfsec.org/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
@@ -554,7 +668,7 @@
     <link href="https://jfsec.org/2016/11/06/docker-kali/"/>
     <id>https://jfsec.org/2016/11/06/docker-kali/</id>
     <published>2016-11-06T15:28:02.000Z</published>
-    <updated>2017-06-16T06:17:02.000Z</updated>
+    <updated>2017-06-25T08:45:15.000Z</updated>
     
     <content type="html"><![CDATA[<p>新建并启动</p>
 <p><code>sudo docker run -t -i --name kali ubuntu:14.04 /bin/bash</code></p>
@@ -1267,41 +1381,6 @@
     
     
       <category term="coding" scheme="https://jfsec.org/tags/coding/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安全开发生命周期SDL</title>
-    <link href="https://jfsec.org/2015/04/13/sdl/"/>
-    <id>https://jfsec.org/2015/04/13/sdl/</id>
-    <published>2015-04-13T00:25:36.000Z</published>
-    <updated>2017-05-12T11:29:30.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>目前所知道的SDL方法是微软提出的Microsoft SDL(Security Development Lifecycle)，主要包括培训、需求、设计、实施、验证，发布、运维响应安全活动。SDL强调应注重各个阶段产生的交付物质量和完整性。</p>
-<a id="more"></a>
-<p>各个阶段的工作可能包括如下活动：</p>
-<ul>
-<li><strong>培训</strong> 有针对性的安全开发培训，如安全架构及安全组件，前端端代码安全，移动安全</li>
-<li><strong>需求</strong> 根据业务场景，制定适合业务特性的<em>个性化</em>安全需求</li>
-<li><strong>设计</strong> 安全需求设计，优先选择成熟的安全开发框架及安全组件</li>
-<li><strong>构建</strong> 遵循安全编原则、代码审查，可使用开源或商业软件进行代码安全扫描</li>
-<li><strong>验证</strong> 安全需求验证，静态分析、动态分析、漏洞扫描、渗透测试等</li>
-<li><strong>上线</strong> 发布 </li>
-<li><strong>运维</strong> 威胁情报</li>
-</ul>
-<p>基于具体应用，比如互联网应用、App应用，这个方法论是否适用，还要实事求是，考虑<em>组织规模</em>、<em>资源</em>（时间、人才和预算）、<em>高层支持</em>等情况，进行相应裁剪，比如针对Web、App、微信应用显然是有差别的。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;目前所知道的SDL方法是微软提出的Microsoft SDL(Security Development Lifecycle)，主要包括培训、需求、设计、实施、验证，发布、运维响应安全活动。SDL强调应注重各个阶段产生的交付物质量和完整性。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="应用安全" scheme="https://jfsec.org/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="SDL" scheme="https://jfsec.org/tags/SDL/"/>
     
   </entry>
   

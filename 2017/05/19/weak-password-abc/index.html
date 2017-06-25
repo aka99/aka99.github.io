@@ -74,13 +74,13 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="弱口令,弱密码," />
+  <meta name="keywords" content="弱口令,弱密码,数据分析," />
 
 
 
 
 
-  <link rel="alternate" href="/atom.xml" title="信息安全实践流水账" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="信息安全实践备忘录" type="application/atom+xml" />
 
 
 
@@ -92,21 +92,20 @@
 
 
 
-<meta name="description" content="企业内部的应用系统弱密码管理是个比较有意思的话题，以企业现有的应用架构，已启用了强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱密码问题了，实际情况又是如何呢？">
-<meta name="keywords" content="弱口令,弱密码">
+<meta name="description" content="弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。  组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上">
+<meta name="keywords" content="弱口令,弱密码,数据分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="应用系统弱密码之痛">
+<meta property="og:title" content="应用系统弱口令之痛">
 <meta property="og:url" content="https://jfsec.org/2017/05/19/weak-password-abc/index.html">
-<meta property="og:site_name" content="信息安全实践流水账">
-<meta property="og:description" content="企业内部的应用系统弱密码管理是个比较有意思的话题，以企业现有的应用架构，已启用了强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱密码问题了，实际情况又是如何呢？">
-<meta property="og:image" content="http://opmk280rf.bkt.clouddn.com/447104c930993f7bb816ca4b90c48d3a.jpg">
-<meta property="og:image" content="http://opmk280rf.bkt.clouddn.com/8f915a945f44314722c21a5296e8f63a.jpg">
-<meta property="og:image" content="http://opmk280rf.bkt.clouddn.com/deca4dcb84a1a04e85005339aa9cad64.jpg">
-<meta property="og:updated_time" content="2017-06-16T06:17:02.000Z">
+<meta property="og:site_name" content="信息安全实践备忘录">
+<meta property="og:description" content="弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。  组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上">
+<meta property="og:image" content="http://opmk280rf.bkt.clouddn.com/69db2f0b1631a40d94a7d119dabed8e4.jpg">
+<meta property="og:image" content="http://opmk280rf.bkt.clouddn.com/cd6fc30ee08f991ede14bda0627bb35d.jpg">
+<meta property="og:updated_time" content="2017-06-25T06:56:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="应用系统弱密码之痛">
-<meta name="twitter:description" content="企业内部的应用系统弱密码管理是个比较有意思的话题，以企业现有的应用架构，已启用了强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱密码问题了，实际情况又是如何呢？">
-<meta name="twitter:image" content="http://opmk280rf.bkt.clouddn.com/447104c930993f7bb816ca4b90c48d3a.jpg">
+<meta name="twitter:title" content="应用系统弱口令之痛">
+<meta name="twitter:description" content="弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。  组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上">
+<meta name="twitter:image" content="http://opmk280rf.bkt.clouddn.com/69db2f0b1631a40d94a7d119dabed8e4.jpg">
 
 
 
@@ -140,7 +139,7 @@
 
 
 
-  <title>应用系统弱密码之痛 | 信息安全实践流水账</title>
+  <title>应用系统弱口令之痛 | 信息安全实践备忘录</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -185,7 +184,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">信息安全实践流水账</span>
+        <span class="site-title">信息安全实践备忘录</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -230,12 +229,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
           </a>
         </li>
       
@@ -250,12 +249,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            标签
+            关于
           </a>
         </li>
       
@@ -293,11 +292,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tony Zhou">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="信息安全实践流水账">
+      <meta itemprop="name" content="信息安全实践备忘录">
     </span>
 
     
@@ -305,7 +304,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">应用系统弱密码之痛</h2>
+          <h2 class="post-title" itemprop="name headline">应用系统弱口令之痛</h2>
         
 
         <div class="post-meta">
@@ -372,14 +371,52 @@
       
 
       
-        <p>企业内部的应用系统弱密码管理是个比较有意思的话题，以企业现有的应用架构，已启用了强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱密码问题了，实际情况又是如何呢？</p>
+        <p>弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。 </p>
+<p>组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱口令问题了，实际情况又是如何呢？</p>
 <a id="more"></a>
-<h3 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h3><p>最近根据要求，对某个内部系统弱密码进行了抽查，采用的方法是依据系统存放密码的算法，准备了有单位特征十几个弱密码hash，与数据库记录进行比对，发现居然命中了30%以上弱密码，这个值得深思，许多人喜欢简单易记密码，比如<code>xxxx1234</code>,<code>xxxx@Wsx</code>等等。</p>
-<p><img src="http://opmk280rf.bkt.clouddn.com/447104c930993f7bb816ca4b90c48d3a.jpg" alt=""></p>
-<p><img src="http://opmk280rf.bkt.clouddn.com/8f915a945f44314722c21a5296e8f63a.jpg" alt=""></p>
-<p><img src="http://opmk280rf.bkt.clouddn.com/deca4dcb84a1a04e85005339aa9cad64.jpg" alt=""></p>
-<h3 id="怎么办？"><a href="#怎么办？" class="headerlink" title="怎么办？"></a>怎么办？</h3><p>赶紧通知各部门进行修改，如不及时修改，通报批评，后续加强安全意识宣导。</p>
-<h3 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h3><ul>
+<h3 id="引子：强安全策略下也有弱口令"><a href="#引子：强安全策略下也有弱口令" class="headerlink" title="引子：强安全策略下也有弱口令"></a>引子：强安全策略下也有弱口令</h3><p>最近对某个内部系统口令进行了抽查，准备了有十几个强安全策略下的弱口令进行比对，弱口令命中了率居然达到了30%。</p>
+<h3 id="行业痛点"><a href="#行业痛点" class="headerlink" title="行业痛点"></a>行业痛点</h3><p>许多组织强安全策略下的弱口令的典型特征是：<code>xxxxxxx</code>（ 企业名称字母缩写） + <code>简单数字</code>，如：</p>
+<ul>
+<li>xxxxxx1111</li>
+<li>xxxxxx2222</li>
+<li>xxxxxx8888</li>
+<li>…</li>
+</ul>
+<p>关于应用系统弱口令的问题，根据乌云漏洞平台2012.1-2015.4的公布的数据，抓取后分析发现<code>弱口令</code>共3763个，漏洞排名第五位。</p>
+<p><img src="http://opmk280rf.bkt.clouddn.com/69db2f0b1631a40d94a7d119dabed8e4.jpg" alt=""></p>
+<h3 id="弱口令规律"><a href="#弱口令规律" class="headerlink" title="弱口令规律"></a>弱口令规律</h3><p>参照前几年CSDN泄漏的600万用户口数据, 看看有何规律：</p>
+<p>先看一下TOP10，如下图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">top = df.password.value_counts()</div><div class="line">fig, ax = plt.subplots(figsize=(<span class="number">10</span>,<span class="number">5</span>))</div><div class="line">ax.set_ylabel(<span class="string">u'密码'</span>, fontsize=<span class="number">16</span>)</div><div class="line">ax.set_xlabel(<span class="string">u'数量'</span>, fontsize=<span class="number">16</span>)</div><div class="line">ax.set_title(<span class="string">u'CSDN Top10 密码'</span>, fontsize=<span class="number">18</span>, y=<span class="number">1.01</span>)</div><div class="line">top[:<span class="number">10</span>].plot(kind=<span class="string">'barh'</span>)</div><div class="line">plt.gca().invert_yaxis()</div></pre></td></tr></table></figure>
+<p><img src="http://opmk280rf.bkt.clouddn.com/cd6fc30ee08f991ede14bda0627bb35d.jpg" alt=""></p>
+<p><strong>TOP10密码、数量</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">123456789     235012</div><div class="line">12345678      212749</div><div class="line">11111111       76346</div><div class="line">dearbook       46053</div><div class="line">00000000       34952</div><div class="line">123123123      19986</div><div class="line">1234567890     17790</div><div class="line">88888888       15033</div><div class="line">111111111       6995</div><div class="line">147258369       5965</div></pre></td></tr></table></figure>
+<p><strong>TOP10密码</strong>中有9个均是纯数字密码，规律如下：</p>
+<ul>
+<li>连续的数字 123456789 12345678 1234567890</li>
+<li>重复的数字 11111111 00000000 88888888 111111111 </li>
+<li>连续加重复 123123123</li>
+<li>数字键盘 147258369</li>
+</ul>
+<p>显然，在设置密码方面，大家的喜好有点相似，喜欢简单易记的，特别是上面的数字规律。</p>
+<h3 id="如何应对"><a href="#如何应对" class="headerlink" title="如何应对"></a>如何应对</h3><p>加强管理：弱口令这一块的应对，要加强：</p>
+<ul>
+<li>安全意识培训、</li>
+<li>强制密码策略、</li>
+<li>使用外部公开的社工库进行匹配</li>
+<li>加上惩罚措施，让员工对此产生敬畏之心</li>
+</ul>
+<p>技术手段：</p>
+<ul>
+<li>加入二次验证功能</li>
+</ul>
+<p>如何设置一个安全、牢固、可靠的密码？</p>
+<ul>
+<li>使用大写字母和小写字母、标点和数字的集合 </li>
+<li>有规律地更换密码</li>
+<li>不要使用和你有关的姓名和数字，如出生日期或是绰号。</li>
+<li>不要使用可轻易获得的关于你的信息。这包括执照号码、电话号码、身份证号码、手机号码、所居住的街道的名字等等</li>
+</ul>
+<h3 id="总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。"><a href="#总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。" class="headerlink" title="总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。"></a>总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。</h3><h3 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h3><ul>
 <li>jupyter notebook</li>
 <li>pandas</li>
 <li>matplotlib</li>
@@ -417,6 +454,8 @@
           
             <a href="/tags/弱密码/" rel="tag"># 弱密码</a>
           
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
         </div>
       
 
@@ -438,8 +477,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/16/recon-ng/" rel="prev" title="recon-ng 使用更新">
-                recon-ng 使用更新 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/12/recon-ng/" rel="prev" title="开源威胁情报工具recon-ng使用">
+                开源威胁情报工具recon-ng使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -496,7 +535,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="https://avatars1.githubusercontent.com/u/4601053?v=3&s=460"
+               src="/images/avatar.gif"
                alt="Tony Zhou" />
           <p class="site-author-name" itemprop="name">Tony Zhou</p>
            
@@ -508,7 +547,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -519,7 +558,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -530,7 +569,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -583,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#现状"><span class="nav-number">1.</span> <span class="nav-text">现状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#怎么办？"><span class="nav-number">2.</span> <span class="nav-text">怎么办？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析工具"><span class="nav-number">3.</span> <span class="nav-text">分析工具</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引子：强安全策略下也有弱口令"><span class="nav-number">1.</span> <span class="nav-text">引子：强安全策略下也有弱口令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行业痛点"><span class="nav-number">2.</span> <span class="nav-text">行业痛点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱口令规律"><span class="nav-number">3.</span> <span class="nav-text">弱口令规律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何应对"><span class="nav-number">4.</span> <span class="nav-text">如何应对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。"><span class="nav-number">5.</span> <span class="nav-text">总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析工具"><span class="nav-number">6.</span> <span class="nav-text">分析工具</span></a></li></ol></div>
             
 
           </div>

@@ -173,7 +173,7 @@
     <link href="https://jfsec.org/2017/05/19/weak-password-abc/"/>
     <id>https://jfsec.org/2017/05/19/weak-password-abc/</id>
     <published>2017-05-19T09:29:43.000Z</published>
-    <updated>2017-06-25T06:56:49.000Z</updated>
+    <updated>2017-06-26T02:11:41.000Z</updated>
     
     <content type="html"><![CDATA[<p>弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。 </p>
 <p>组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上，包含大、小写字母、数字或特殊字符3种以上组合，定期强制修改密码，有这样的管控，似乎不应该有弱口令问题了，实际情况又是如何呢？</p>
@@ -186,9 +186,9 @@
 <li>xxxxxx8888</li>
 <li>…</li>
 </ul>
-<p>关于应用系统弱口令的问题，根据乌云漏洞平台2012.1-2015.4的公布的数据，抓取后分析发现<code>弱口令</code>共3763个，漏洞排名第五位。</p>
+<p>关于应用系统弱口令的问题，根据乌云漏洞平台2012.1-2015.4的公开的漏洞信息，统计分析发现<code>弱口令</code>漏洞共3763个，漏洞数排名第五位。</p>
 <p><img src="http://opmk280rf.bkt.clouddn.com/69db2f0b1631a40d94a7d119dabed8e4.jpg" alt=""></p>
-<h3 id="弱口令规律"><a href="#弱口令规律" class="headerlink" title="弱口令规律"></a>弱口令规律</h3><p>参照前几年CSDN泄漏的600万用户口数据, 看看有何规律：</p>
+<h3 id="弱口令规律"><a href="#弱口令规律" class="headerlink" title="弱口令规律"></a>弱口令规律</h3><p>参照前几年CSDN泄漏的600万用户口令数据, 看看有何规律：</p>
 <p>先看一下TOP10，如下图：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">top = df.password.value_counts()</div><div class="line">fig, ax = plt.subplots(figsize=(<span class="number">10</span>,<span class="number">5</span>))</div><div class="line">ax.set_ylabel(<span class="string">u'密码'</span>, fontsize=<span class="number">16</span>)</div><div class="line">ax.set_xlabel(<span class="string">u'数量'</span>, fontsize=<span class="number">16</span>)</div><div class="line">ax.set_title(<span class="string">u'CSDN Top10 密码'</span>, fontsize=<span class="number">18</span>, y=<span class="number">1.01</span>)</div><div class="line">top[:<span class="number">10</span>].plot(kind=<span class="string">'barh'</span>)</div><div class="line">plt.gca().invert_yaxis()</div></pre></td></tr></table></figure>
 <p><img src="http://opmk280rf.bkt.clouddn.com/cd6fc30ee08f991ede14bda0627bb35d.jpg" alt=""></p>
@@ -202,10 +202,10 @@
 <li>数字键盘 147258369</li>
 </ul>
 <p>显然，在设置密码方面，大家的喜好有点相似，喜欢简单易记的，特别是上面的数字规律。</p>
-<h3 id="如何应对"><a href="#如何应对" class="headerlink" title="如何应对"></a>如何应对</h3><p>加强管理：弱口令这一块的应对，要加强：</p>
+<h3 id="如何应对"><a href="#如何应对" class="headerlink" title="如何应对"></a>如何应对</h3><p>管理措施：</p>
 <ul>
-<li>安全意识培训、</li>
-<li>强制密码策略、</li>
+<li>安全意识培训</li>
+<li>强制密码策略</li>
 <li>使用外部公开的社工库进行匹配</li>
 <li>加上惩罚措施，让员工对此产生敬畏之心</li>
 </ul>
@@ -217,7 +217,7 @@
 <ul>
 <li>使用大写字母和小写字母、标点和数字的集合 </li>
 <li>有规律地更换密码</li>
-<li>不要使用和你有关的姓名和数字，如出生日期或是绰号。</li>
+<li>不要使用和你有关的姓名和数字，如出生日期或是绰号</li>
 <li>不要使用可轻易获得的关于你的信息。这包括执照号码、电话号码、身份证号码、手机号码、所居住的街道的名字等等</li>
 </ul>
 <h3 id="总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。"><a href="#总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。" class="headerlink" title="总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。"></a>总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。</h3><h3 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h3><ul>
@@ -276,43 +276,6 @@
       <category term="metasploit" scheme="https://jfsec.org/tags/metasploit/"/>
     
       <category term="ms17-010" scheme="https://jfsec.org/tags/ms17-010/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何在阿里云ECS 运行Jupyter Notebook</title>
-    <link href="https://jfsec.org/2017/04/06/ipython-notebook/"/>
-    <id>https://jfsec.org/2017/04/06/ipython-notebook/</id>
-    <published>2017-04-06T15:16:33.000Z</published>
-    <updated>2017-06-16T06:17:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>感谢阿里云送的代金券，买了几台ECS，可以做什么用呢？</p>
-<p><strong>思路</strong></p>
-<ul>
-<li>在Ubuntu16.04 上安装Python3 版本Jupyter</li>
-<li>映射服务器端口至本地</li>
-</ul>
-<a id="more"></a>
-<p><strong>@服务 上新建<code>~/.jupyter/jupyter_notebook_config.py</code></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">c.NotebookApp.ip = &apos;127.0.0.1&apos;</div><div class="line">c.NotebookApp.port = 8080</div><div class="line">c.NotebookApp.open_browser = False</div></pre></td></tr></table></figure></p>
-<p><strong>@客户端 映射本地端口8000 对应服务器地端口80</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh -L 8080:localhost:8080 aka77@u16</div><div class="line">jupyter notebook</div></pre></td></tr></table></figure></p>
-<p><img src="http://opmk280rf.bkt.clouddn.com/6dededb8804d96ed0743cdd6184d3b8e.jpg" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;感谢阿里云送的代金券，买了几台ECS，可以做什么用呢？&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;思路&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在Ubuntu16.04 上安装Python3 版本Jupyter&lt;/li&gt;
-&lt;li&gt;映射服务器端口至本地&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="工具" scheme="https://jfsec.org/categories/%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="python" scheme="https://jfsec.org/tags/python/"/>
     
   </entry>
   
@@ -759,41 +722,6 @@
   </entry>
   
   <entry>
-    <title>HTTPS 网站压力测试</title>
-    <link href="https://jfsec.org/2016/09/07/locus/"/>
-    <id>https://jfsec.org/2016/09/07/locus/</id>
-    <published>2016-09-07T07:26:17.000Z</published>
-    <updated>2017-06-16T06:17:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>对于网站启用了HTTPS，担心性能下降，需要了解一下处理能力，故要压力测试一下，一开始想到了apache ab测试工具，但是对于复杂的场景ab无能无力，基于python的开源工具locust比较不错，测试登陆、rest api都可以。</p>
-<p>特点：</p>
-<ul>
-<li>测试用例自编python脚本</li>
-<li>支持分布式部署测试，一台作为master主控，其他多台salve。</li>
-</ul>
-<p>实例：</p>
-<ul>
-<li>django 网站登陆及页面访问压力测试</li>
-<li>django rest api 压力测试，为了并发测试，提前获取到jwt token，填入脚本，直接跳过登陆</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;对于网站启用了HTTPS，担心性能下降，需要了解一下处理能力，故要压力测试一下，一开始想到了apache ab测试工具，但是对于复杂的场景ab无能无力，基于python的开源工具locust比较不错，测试登陆、rest api都可以。&lt;/p&gt;
-&lt;p&gt;特点：&lt;/p&gt;
-&lt;ul&gt;
-    
-    </summary>
-    
-      <category term="技术工具" scheme="https://jfsec.org/categories/%E6%8A%80%E6%9C%AF%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="压力测试" scheme="https://jfsec.org/tags/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Wooyun 漏洞库及Drop文章</title>
     <link href="https://jfsec.org/2016/08/02/wooyun/"/>
     <id>https://jfsec.org/2016/08/02/wooyun/</id>
@@ -866,85 +794,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>走进用户劳动竞赛故事</title>
-    <link href="https://jfsec.org/2016/05/24/web-security/"/>
-    <id>https://jfsec.org/2016/05/24/web-security/</id>
-    <published>2016-05-24T06:22:54.000Z</published>
-    <updated>2017-06-16T06:17:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>某IT中心举办了一个<em>劳动竞赛</em>活动，“走进用户，一日三查”，请员工早、中、晚访问指定的IT系统，确认是否可用，为记录大家任务执行情况开发了任务系统，业务功能很简单，如访问正常，提交正常任务记1分，反之，访问异常，提交异常任务记二分并提交一个工单，定期统计各员工得分，进行排名和奖励。<br>由于缺乏安全评审，根据业务需求，开发考虑到员工提交任务只能在指定时间段内可用，比如早上只能提交对应早上的检查任务，不能提交中午或晚上的检查任务，所以在实现的时候增加了时间检查，实现方法是在前端JS脚本判断当前时间处于哪个检查任务阶段，只有符合条件才能提交，但是在服务端没有验证。</p>
-<a id="more"></a>
-<h2 id="初步分析"><a href="#初步分析" class="headerlink" title="初步分析"></a>初步分析</h2><p><strong>使用chrome 登录任务系统</strong>打开开发者工具，查看提交任务按钮对应信息，发现onclick事件</p>
-<ul>
-<li>正常按钮：触发normalTask(taskId)</li>
-<li>异常按钮：触发abnormalTask(taskId)</li>
-</ul>
-<p>在开发者工具source tab中全文搜索normalTask，逻辑如下</p>
-<ul>
-<li>当前时间如处于上午时段，post到normaltask url，参数为系统名称、taskid</li>
-<li>中午、晚上也是类似</li>
-</ul>
-<p>经过以上简单分析，了解了应用处理的逻辑，找到了实际<strong>任务提交URL</strong>及<strong>参数</strong>规则，接下来需要测试验证</p>
-<h2 id="测试验证"><a href="#测试验证" class="headerlink" title="测试验证"></a>测试验证</h2><p>测试方法或思路有几种方法：</p>
-<h3 id="在Chrome-中修改JS-函数逻辑，去掉JS时间限制"><a href="#在Chrome-中修改JS-函数逻辑，去掉JS时间限制" class="headerlink" title="在Chrome 中修改JS 函数逻辑，去掉JS时间限制"></a>在Chrome 中修改JS 函数逻辑，去掉JS时间限制</h3><p>修改方法</p>
-<ul>
-<li>首先 在Chrome Sources 中修改normalTask 函数，去掉JS时间限制，修改完成后保存（ctrl＋s）</li>
-<li>或 在Chrome Console中新建一个提交任务函数myTask，拷贝normalTask内容，去除时间限制内容，仅保留ajax post内容</li>
-<li><p>最后，在Chrome Console中 输入 normalTask</p>
-<p>  <code>normalTask(&#39;123456&#39;)</code></p>
-</li>
-</ul>
-<h3 id="自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本"><a href="#自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本" class="headerlink" title="自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本"></a>自动化编制python脚本。需求是每天都提交任务，通过chrome处理就不太方便，编写python脚本</h3><p>步骤：</p>
-<ul>
-<li>登录任务系统 使用登录帐号及密码</li>
-<li>查找每日任务</li>
-<li>强行提交任务</li>
-</ul>
-<p><strong>辅助工具</strong></p>
-<ul>
-<li>Burp Suite</li>
-<li>Burp Suite插件 generate script，可生成POST／GET脚本</li>
-</ul>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">import</span> json</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_phase</span><span class="params">()</span>:</span></div><div class="line">  c_hour = datetime.now().hour</div><div class="line">  <span class="keyword">if</span> c_hour &lt;= <span class="number">8</span>:</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span></div><div class="line">  <span class="keyword">if</span> c_hour &gt;= <span class="number">12</span> <span class="keyword">and</span> c_hour &lt;= <span class="number">13</span>:</div><div class="line">    <span class="keyword">return</span> <span class="number">1</span></div><div class="line">  <span class="keyword">if</span> c_hour &gt;= <span class="number">18</span> <span class="keyword">and</span> c_hour &lt;= <span class="number">20</span>:</div><div class="line">    <span class="keyword">return</span> <span class="number">2</span></div><div class="line">  <span class="keyword">return</span> <span class="number">-1</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">login</span><span class="params">(url, username, password)</span>:</span></div><div class="line">  session_sso = requests.Session()</div><div class="line">  paramsPost = &#123;</div><div class="line">      <span class="string">"userName"</span>: username,</div><div class="line">      <span class="string">"password"</span>: password,</div><div class="line">  &#125;</div><div class="line">  headers = &#123;<span class="string">"Accept"</span>: <span class="string">"*/*"</span>, <span class="string">"X-Requested-With"</span>: <span class="string">"XMLHttpRequest"</span>,</div><div class="line">             <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:43.0) Gecko/20100101 Firefox/43.0"</span>,</div><div class="line">             <span class="string">"Referer"</span>: <span class="string">"%s/portal/page/tio/html/login/login.html"</span> % url, <span class="string">"Connection"</span>: <span class="string">"close"</span>,</div><div class="line">             <span class="string">"Accept-Language"</span>: <span class="string">"en-US,en;q=0.5"</span>, <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>, <span class="string">"DNT"</span>: <span class="string">"1"</span>,</div><div class="line">             <span class="string">"Content-Type"</span>: <span class="string">"application/x-www-form-urlencoded"</span>&#125;</div><div class="line">  response = session_sso.post(<span class="string">'%s/xxx'</span> % url, data=paramsPost, headers=headers)</div><div class="line">  ...</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">submit</span><span class="params">(url, token, empNo, phase)</span>:</span></div><div class="line">  session_ops = requests.Session()</div><div class="line">  paramsGet = &#123;</div><div class="line">      <span class="string">"resourceCode"</span>: <span class="string">"operation_maintenance_paging"</span>,</div><div class="line">      <span class="string">"token"</span>: token</div><div class="line">  &#125;</div><div class="line">  response = session_ops.get(<span class="string">"%s/tokenlogin.do"</span> % url, params=paramsGet) <span class="comment"># 认证</span></div><div class="line"></div><div class="line">  response = session_ops.post(<span class="string">"%s/searchCompeteSys.do"</span> % url) <span class="comment"># 查询任务</span></div><div class="line">  tasks = json.loads(response.content, encoding=<span class="string">'utf8'</span>)</div><div class="line">  score_begin = tasks[<span class="string">'sys'</span>][<span class="string">'score'</span>]</div><div class="line">  sysName = tasks[<span class="string">'sys'</span>][<span class="string">'sysName'</span>]</div><div class="line">  task = tasks[<span class="string">'list'</span>][phase]</div><div class="line">  paramsPost = &#123;<span class="string">"sysName"</span>:sysName,<span class="string">"taskId"</span>: task[<span class="string">'id'</span>]&#125;</div><div class="line">  response = session_ops.post(<span class="string">"%s/normaltask.do"</span> % url, data=paramsPost) <span class="comment"># 提交任务</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">  url = <span class="string">''</span></div><div class="line">  username = <span class="string">''</span></div><div class="line">  password = <span class="string">''</span></div><div class="line"></div><div class="line">  phase = get_phase()</div><div class="line">  <span class="keyword">if</span> phase != <span class="number">-1</span>:</div><div class="line">    token = login(url, username, password)</div><div class="line">    submit(url, token[<span class="number">0</span>], token[<span class="number">1</span>], phase)</div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"时间未到"</span></div></pre></td></tr></table></figure>
-<h3 id="其它方法："><a href="#其它方法：" class="headerlink" title="其它方法："></a>其它方法：</h3><ul>
-<li>使用burp分析，修改提及内容或replay</li>
-<li>可用使用Chrome 插件，手动提交任务给接口，插件：<ul>
-<li><strong>ARC（advanced rest client）</strong> 中文需urlencode</li>
-<li>postman</li>
-<li>Request Make</li>
-<li>DHC （DHC Rest Client）</li>
-</ul>
-</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><strong> 任务接口其他问题：</strong></p>
-<ul>
-<li>可重复提交，不断记分</li>
-<li>可越权控制，如提交到别人的系统、taskid</li>
-<li>可别恶意攻击，由于taskid规则为5位数字，可以进行暴力攻击，把所有taskid提交完，导致前端浏览器用户看到的任务状态都已经disabled，不能提交</li>
-</ul>
-<p><strong>如何预防此类问题</strong></p>
-<ul>
-<li>反思，缺乏安全需求分析、及设计</li>
-<li>修补策略，权限控制，服务端验证。</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;某IT中心举办了一个&lt;em&gt;劳动竞赛&lt;/em&gt;活动，“走进用户，一日三查”，请员工早、中、晚访问指定的IT系统，确认是否可用，为记录大家任务执行情况开发了任务系统，业务功能很简单，如访问正常，提交正常任务记1分，反之，访问异常，提交异常任务记二分并提交一个工单，定期统计各员工得分，进行排名和奖励。&lt;br&gt;由于缺乏安全评审，根据业务需求，开发考虑到员工提交任务只能在指定时间段内可用，比如早上只能提交对应早上的检查任务，不能提交中午或晚上的检查任务，所以在实现的时候增加了时间检查，实现方法是在前端JS脚本判断当前时间处于哪个检查任务阶段，只有符合条件才能提交，但是在服务端没有验证。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Web安全" scheme="https://jfsec.org/categories/Web%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="JS" scheme="https://jfsec.org/tags/JS/"/>
-    
-      <category term="前端" scheme="https://jfsec.org/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -1303,84 +1152,37 @@
   </entry>
   
   <entry>
-    <title>土鳖开发方法论小结</title>
-    <link href="https://jfsec.org/2015/04/27/xp/"/>
-    <id>https://jfsec.org/2015/04/27/xp/</id>
-    <published>2015-04-27T07:47:41.000Z</published>
-    <updated>2017-06-16T06:17:02.000Z</updated>
+    <title>安全开发生命周期SDL</title>
+    <link href="https://jfsec.org/2015/04/13/sdl/"/>
+    <id>https://jfsec.org/2015/04/13/sdl/</id>
+    <published>2015-04-13T00:25:36.000Z</published>
+    <updated>2017-05-12T11:29:30.000Z</updated>
     
-    <content type="html"><![CDATA[<p>作为一个土鳖，开发一些web应用，少不了产品需求、设计、开发流程等</p>
-<ol>
-<li><p>需求一般使用用户故事板来</p>
-<ul>
-<li>创意</li>
-<li>角色</li>
-<li>场景</li>
-<li>用例</li>
-</ul>
-</li>
-<li><p>然后是大致几个功能</p>
-</li>
-<li><p>接着开发个原型、再测试一下功能</p>
-</li>
-</ol>
-<p><strong>定期scrum看板</strong></p>
-<ul>
-<li>“我昨天做了什么工作”、</li>
-<li>“今天打算做什么”</li>
-<li>“遇到了什么麻烦</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;作为一个土鳖，开发一些web应用，少不了产品需求、设计、开发流程等&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;需求一般使用用户故事板来&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;创意&lt;/li&gt;
-&lt;li&gt;角色&lt;/li&gt;
-&lt;li&gt;场景&lt;/li&gt;
-&lt;li&gt;用例&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;
-    
-    </summary>
-    
-    
-      <category term="敏捷开发" scheme="https://jfsec.org/tags/%E6%95%8F%E6%8D%B7%E5%BC%80%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>代码大全读后感</title>
-    <link href="https://jfsec.org/2015/04/18/code-complete/"/>
-    <id>https://jfsec.org/2015/04/18/code-complete/</id>
-    <published>2015-04-18T11:30:52.000Z</published>
-    <updated>2017-06-16T06:17:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近读《代码大全》中文版，按照翻译者的阅读建议，收获颇丰.</p>
-<h2 id="Table-Driver-Method"><a href="#Table-Driver-Method" class="headerlink" title="Table-Driver Method"></a>Table-Driver Method</h2><p><strong>痛点</strong>以前写的不少程序，在判断多个条件时，常常写的很复杂，可读性不好，维护起来麻烦。<br><strong>思路</strong>现在好了，把复杂条件逻辑预先定义为列表或字典（建表），在程序中代入变量值查表，大大简化。</p>
+    <content type="html"><![CDATA[<p>目前所知道的SDL方法是微软提出的Microsoft SDL(Security Development Lifecycle)，主要包括培训、需求、设计、实施、验证，发布、运维响应安全活动。SDL强调应注重各个阶段产生的交付物质量和完整性。</p>
 <a id="more"></a>
-<h2 id="举例一-列表或字典"><a href="#举例一-列表或字典" class="headerlink" title="举例一  列表或字典"></a>举例一  列表或字典</h2><figure class="highlight py"><figcaption><span>未优化</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> phase == <span class="number">1</span>: </div><div class="line">    do()</div><div class="line"><span class="keyword">elif</span> phase == <span class="number">2</span>:</div><div class="line">    do()</div><div class="line"><span class="keyword">elif</span> phase == <span class="number">3</span>:</div><div class="line">    do()</div><div class="line">...</div></pre></td></tr></table></figure>
-<figure class="highlight py"><figcaption><span>改进版</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">phases = [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>]</div><div class="line"><span class="keyword">if</span> phase <span class="keyword">in</span> phases:</div><div class="line">    do()</div><div class="line">...</div></pre></td></tr></table></figure>
-<h2 id="举例二-多个区间建表"><a href="#举例二-多个区间建表" class="headerlink" title="举例二  多个区间建表"></a>举例二  多个区间建表</h2><figure class="highlight py"><figcaption><span>多个区间建表</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="string">"""</span></div><div class="line">    0-2 do a</div><div class="line">    3-8 do b</div><div class="line">    10-18 do c</div><div class="line">"""</div><div class="line"></div><div class="line"><span class="comment"># 建表</span></div><div class="line">phases = &#123;</div><div class="line">    <span class="string">'0'</span>:<span class="string">'a'</span>,</div><div class="line">    ...</div><div class="line">    <span class="string">'3'</span>:<span class="string">'b'</span>,</div><div class="line">    ...</div><div class="line">    <span class="number">10</span>:<span class="string">'c'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line">phase = phases.get(phases)</div><div class="line"><span class="keyword">if</span> phase:</div><div class="line">  do(phase)</div><div class="line"></div></pre></td></tr></table></figure>
-<h2 id="举例三-把表信息放到配置文件中，以后只需维护配置文件"><a href="#举例三-把表信息放到配置文件中，以后只需维护配置文件" class="headerlink" title="举例三 把表信息放到配置文件中，以后只需维护配置文件"></a>举例三 把表信息放到配置文件中，以后只需维护配置文件</h2><ul>
-<li>使用json 格式文件定义列表</li>
-<li>程序读文件</li>
+<p>各个阶段的工作可能包括如下活动：</p>
+<ul>
+<li><strong>培训</strong> 有针对性的安全开发培训，如安全架构及安全组件，前端端代码安全，移动安全</li>
+<li><strong>需求</strong> 根据业务场景，制定适合业务特性的<em>个性化</em>安全需求</li>
+<li><strong>设计</strong> 安全需求设计，优先选择成熟的安全开发框架及安全组件</li>
+<li><strong>构建</strong> 遵循安全编原则、代码审查，可使用开源或商业软件进行代码安全扫描</li>
+<li><strong>验证</strong> 安全需求验证，静态分析、动态分析、漏洞扫描、渗透测试等</li>
+<li><strong>上线</strong> 发布 </li>
+<li><strong>运维</strong> 威胁情报</li>
 </ul>
+<p>基于具体应用，比如互联网应用、App应用，这个方法论是否适用，还要实事求是，考虑<em>组织规模</em>、<em>资源</em>（时间、人才和预算）、<em>高层支持</em>等情况，进行相应裁剪，比如针对Web、App、微信应用显然是有差别的。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;最近读《代码大全》中文版，按照翻译者的阅读建议，收获颇丰.&lt;/p&gt;
-&lt;h2 id=&quot;Table-Driver-Method&quot;&gt;&lt;a href=&quot;#Table-Driver-Method&quot; class=&quot;headerlink&quot; title=&quot;Table-Driver Method&quot;&gt;&lt;/a&gt;Table-Driver Method&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;痛点&lt;/strong&gt;以前写的不少程序，在判断多个条件时，常常写的很复杂，可读性不好，维护起来麻烦。&lt;br&gt;&lt;strong&gt;思路&lt;/strong&gt;现在好了，把复杂条件逻辑预先定义为列表或字典（建表），在程序中代入变量值查表，大大简化。&lt;/p&gt;
+      &lt;p&gt;目前所知道的SDL方法是微软提出的Microsoft SDL(Security Development Lifecycle)，主要包括培训、需求、设计、实施、验证，发布、运维响应安全活动。SDL强调应注重各个阶段产生的交付物质量和完整性。&lt;/p&gt;
     
     </summary>
     
+      <category term="应用安全" scheme="https://jfsec.org/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
     
-      <category term="coding" scheme="https://jfsec.org/tags/coding/"/>
+    
+      <category term="SDL" scheme="https://jfsec.org/tags/SDL/"/>
     
   </entry>
   

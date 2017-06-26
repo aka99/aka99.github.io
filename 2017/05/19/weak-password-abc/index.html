@@ -101,7 +101,7 @@
 <meta property="og:description" content="弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。  组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上">
 <meta property="og:image" content="http://opmk280rf.bkt.clouddn.com/69db2f0b1631a40d94a7d119dabed8e4.jpg">
 <meta property="og:image" content="http://opmk280rf.bkt.clouddn.com/cd6fc30ee08f991ede14bda0627bb35d.jpg">
-<meta property="og:updated_time" content="2017-06-25T06:56:49.000Z">
+<meta property="og:updated_time" content="2017-06-26T02:11:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="应用系统弱口令之痛">
 <meta name="twitter:description" content="弱口令是指容易被破解的口令（password，简称口令或密码），如123456等。长期以来，弱口令一直作为各种安全检查、风险评估报告中最常见的高风险安全问题存在，成为攻击者控制系统的主要途径，许多安全防护体系是基于密码的，口令被破解在某种意义上来讲意味着其安全体系的全面崩溃。  组织内部的应用系统口令管理是组织信息安全的一大痛点，许多组织对密码制定了密码安全规范，并强制启用强密码策略，比如8位以上">
@@ -382,9 +382,9 @@
 <li>xxxxxx8888</li>
 <li>…</li>
 </ul>
-<p>关于应用系统弱口令的问题，根据乌云漏洞平台2012.1-2015.4的公布的数据，抓取后分析发现<code>弱口令</code>共3763个，漏洞排名第五位。</p>
+<p>关于应用系统弱口令的问题，根据乌云漏洞平台2012.1-2015.4的公开的漏洞信息，统计分析发现<code>弱口令</code>漏洞共3763个，漏洞数排名第五位。</p>
 <p><img src="http://opmk280rf.bkt.clouddn.com/69db2f0b1631a40d94a7d119dabed8e4.jpg" alt=""></p>
-<h3 id="弱口令规律"><a href="#弱口令规律" class="headerlink" title="弱口令规律"></a>弱口令规律</h3><p>参照前几年CSDN泄漏的600万用户口数据, 看看有何规律：</p>
+<h3 id="弱口令规律"><a href="#弱口令规律" class="headerlink" title="弱口令规律"></a>弱口令规律</h3><p>参照前几年CSDN泄漏的600万用户口令数据, 看看有何规律：</p>
 <p>先看一下TOP10，如下图：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">top = df.password.value_counts()</div><div class="line">fig, ax = plt.subplots(figsize=(<span class="number">10</span>,<span class="number">5</span>))</div><div class="line">ax.set_ylabel(<span class="string">u'密码'</span>, fontsize=<span class="number">16</span>)</div><div class="line">ax.set_xlabel(<span class="string">u'数量'</span>, fontsize=<span class="number">16</span>)</div><div class="line">ax.set_title(<span class="string">u'CSDN Top10 密码'</span>, fontsize=<span class="number">18</span>, y=<span class="number">1.01</span>)</div><div class="line">top[:<span class="number">10</span>].plot(kind=<span class="string">'barh'</span>)</div><div class="line">plt.gca().invert_yaxis()</div></pre></td></tr></table></figure>
 <p><img src="http://opmk280rf.bkt.clouddn.com/cd6fc30ee08f991ede14bda0627bb35d.jpg" alt=""></p>
@@ -398,10 +398,10 @@
 <li>数字键盘 147258369</li>
 </ul>
 <p>显然，在设置密码方面，大家的喜好有点相似，喜欢简单易记的，特别是上面的数字规律。</p>
-<h3 id="如何应对"><a href="#如何应对" class="headerlink" title="如何应对"></a>如何应对</h3><p>加强管理：弱口令这一块的应对，要加强：</p>
+<h3 id="如何应对"><a href="#如何应对" class="headerlink" title="如何应对"></a>如何应对</h3><p>管理措施：</p>
 <ul>
-<li>安全意识培训、</li>
-<li>强制密码策略、</li>
+<li>安全意识培训</li>
+<li>强制密码策略</li>
 <li>使用外部公开的社工库进行匹配</li>
 <li>加上惩罚措施，让员工对此产生敬畏之心</li>
 </ul>
@@ -413,7 +413,7 @@
 <ul>
 <li>使用大写字母和小写字母、标点和数字的集合 </li>
 <li>有规律地更换密码</li>
-<li>不要使用和你有关的姓名和数字，如出生日期或是绰号。</li>
+<li>不要使用和你有关的姓名和数字，如出生日期或是绰号</li>
 <li>不要使用可轻易获得的关于你的信息。这包括执照号码、电话号码、身份证号码、手机号码、所居住的街道的名字等等</li>
 </ul>
 <h3 id="总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。"><a href="#总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。" class="headerlink" title="总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。"></a>总结：弱安全策略下有弱口令，强安全策略下也有强的弱口令，我们必须做好全面防范，而防范的第一步就是让自己的密码变得更可靠。</h3><h3 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h3><ul>
@@ -435,6 +435,27 @@
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/path/to/wechat-reward-image" alt="Tony Zhou WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/path/to/alipay-reward-image" alt="Tony Zhou Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -547,7 +568,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -558,7 +579,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

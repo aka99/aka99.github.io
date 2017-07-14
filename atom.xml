@@ -798,56 +798,6 @@
   </entry>
   
   <entry>
-    <title>spiderfoot</title>
-    <link href="https://jfsec.org/2016/07/14/spiderfoot/"/>
-    <id>https://jfsec.org/2016/07/14/spiderfoot/</id>
-    <published>2016-07-14T02:45:56.000Z</published>
-    <updated>2017-07-14T04:28:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>终端屏幕录像</p>
-<p>Getting started</p>
-<ol>
-<li>Mac上安装</li>
-</ol>
-<p><code>brew install asciinema</code></p>
-<ol>
-<li>录制</li>
-</ol>
-<p>`asciinema rec test.json’</p>
-<ol>
-<li>播放</li>
-</ol>
-<p>`asciinema play test.json’</p>
-<p><a href="https://asciinema.org/a/128940" target="_blank" rel="external"><img src="https://asciinema.org/a/128940.png" alt="asciicast"></a></p>
-<ol>
-<li>托管至云服务</li>
-</ol>
-<p>`asciinema auth’</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;终端屏幕录像&lt;/p&gt;
-&lt;p&gt;Getting started&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Mac上安装&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;code&gt;brew install asciinema&lt;/code&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;录制&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;`asciin
-    
-    </summary>
-    
-      <category term="应用安全" scheme="https://jfsec.org/categories/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
-    
-    
-      <category term="应用安全" scheme="https://jfsec.org/tags/%E5%BA%94%E7%94%A8%E5%AE%89%E5%85%A8/"/>
-    
-  </entry>
-  
-  <entry>
     <title>MobSF - Android 安全测试框架</title>
     <link href="https://jfsec.org/2016/05/19/MobSF/"/>
     <id>https://jfsec.org/2016/05/19/MobSF/</id>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jfsec.org/"/>
-  <updated>2017-06-25T08:18:16.000Z</updated>
+  <updated>2017-07-16T15:00:14.000Z</updated>
   <id>https://jfsec.org/</id>
   
   <author>
@@ -14,6 +14,223 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【转】先知安全技术社区 渗透测试 经典合集</title>
+    <link href="https://jfsec.org/2017/07/16/xianzhi-kb-collections/"/>
+    <id>https://jfsec.org/2017/07/16/xianzhi-kb-collections/</id>
+    <published>2017-07-16T14:57:35.000Z</published>
+    <updated>2017-07-16T15:00:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>【转】先知安全技术社区 渗透测试 经典合集</p>
+<h3 id="从容-——WafBypass之道"><a href="#从容-——WafBypass之道" class="headerlink" title="@从容 ——WafBypass之道"></a>@从容 ——WafBypass之道</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/349.html" target="_blank" rel="external">【独家连载】我的WafBypass之道（SQL注入篇）</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/458.html" target="_blank" rel="external">【独家连载】我的WafBypass之道（upload篇）</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/714.html" target="_blank" rel="external">【独家连载】我的WafBypass之道（Misc篇）</a></li>
+</ul>
+<a id="more"></a>
+<h3 id="Sofia"><a href="#Sofia" class="headerlink" title="@Sofia"></a>@Sofia</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/441.html" target="_blank" rel="external">【独家】php一句话后门过狗姿势万千之后门构造与隐藏【一】</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/442.html" target="_blank" rel="external">【独家】php一句话后门过狗姿势万千之传输层加工【二】</a></li>
+</ul>
+<h3 id="math1as"><a href="#math1as" class="headerlink" title="@math1as"></a>@math1as</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1527.html" target="_blank" rel="external">初探 relative path overwrite</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/536.html" target="_blank" rel="external">【独家】XSS Bypass Cookbook</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/523.html" target="_blank" rel="external">【独家】初探CSPBypass一些细节总结</a></li>
+</ul>
+<h3 id="lcamry——SQLi-Labs注入天书"><a href="#lcamry——SQLi-Labs注入天书" class="headerlink" title="@lcamry——SQLi Labs注入天书"></a>@lcamry——SQLi Labs注入天书</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/314.html" target="_blank" rel="external">【独家连载】mysql注入天书（一）Basic Challenges</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/328.html" target="_blank" rel="external">【独家连载】mysql注入天书（二）Advanced injection</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/344.html" target="_blank" rel="external">【独家连载】mysql注入天书（三）Stacked injection</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/411.html" target="_blank" rel="external">【独家连载】mysql注入天书（四）Challenges</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/629.html" target="_blank" rel="external">【独家】Mysql注入天书 PDF版本</a></li>
+</ul>
+<h3 id="菠菜"><a href="#菠菜" class="headerlink" title="@菠菜"></a>@菠菜</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1633.html" target="_blank" rel="external">【独家】Loki窃密木马家族分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1453.html" target="_blank" rel="external">CVE-2017-7269—IIS 6.0 WebDAV远程代码执行漏洞分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/799.html" target="_blank" rel="external">【独家】2017年最佳算法提名勒索软件（sega）分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/726.html" target="_blank" rel="external">【独家】揭开CryptoShield 勒索软件的真实面目</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/657.html" target="_blank" rel="external">【独家】针对俄罗斯社科院的定向勒索分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/622.html" target="_blank" rel="external">火眼分析工具FLARE-QDB介绍</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/578.html" target="_blank" rel="external">静态分析揭开Joanap木马的神秘面纱</a></li>
+</ul>
+<h3 id="rainfire"><a href="#rainfire" class="headerlink" title="@rainfire"></a>@rainfire</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1452.html" target="_blank" rel="external">【独家】0CTF2017 EasiestPrintf PWN技巧分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/840.html" target="_blank" rel="external">【独家】二进制漏洞利用中的ROP技术研究与实例分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/555.html" target="_blank" rel="external">【独家】某驱动逆向题目调试分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/803.html" target="_blank" rel="external">Capcom Rootkit实现原理与分析(翻译）</a></li>
+</ul>
+<h3 id="diffway"><a href="#diffway" class="headerlink" title="@diffway"></a>@diffway</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1603.html" target="_blank" rel="external">【独家】Wannacry 勒索软件分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/707.html" target="_blank" rel="external">【独家】spore勒索软件分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/653.html" target="_blank" rel="external">【独家】zepto勒索软件分析</a></li>
+</ul>
+<h3 id="墨眉-凌迟"><a href="#墨眉-凌迟" class="headerlink" title="@墨眉_凌迟"></a>@墨眉_凌迟</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/415.html" target="_blank" rel="external">【独家】某记账App iOS客户端内购破解</a></li>
+</ul>
+<h3 id="forever80s"><a href="#forever80s" class="headerlink" title="@forever80s"></a>@forever80s</h3><ul>
+<li>[<a href="https://xianzhi.aliyun.com/forum/read/505.html" target="_blank" rel="external">某云pc客户端命令执行挖掘过程</a></li>
+</ul>
+<h3 id="testme"><a href="#testme" class="headerlink" title="@testme"></a>@testme</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/224.html" target="_blank" rel="external">从XSSer的角度测试上传文件功能</a></li>
+</ul>
+<h3 id="索马里的海贼"><a href="#索马里的海贼" class="headerlink" title="@索马里的海贼"></a>@索马里的海贼</h3><p>-<a href="https://xianzhi.aliyun.com/forum/read/215.html" target="_blank" rel="external">【11.9再次更新】CmsEasy前台无限制GetShell</a></p>
+<p>-[<a href="https://xianzhi.aliyun.com/forum/read/627.html" target="_blank" rel="external">【独家】智能硬件分析-京东来点光波入网</a></p>
+<p>-<a href="https://xianzhi.aliyun.com/forum/read/459.html" target="_blank" rel="external">DarkEye开源 免费的cloudeye.me</a></p>
+<h3 id="v1ct0r"><a href="#v1ct0r" class="headerlink" title="@v1ct0r"></a>@v1ct0r</h3><p>-<a href="https://xianzhi.aliyun.com/forum/read/366.html" target="_blank" rel="external">CmsEasy前台无限制GetShell【Getshell的补充说明】</a></p>
+<h3 id="wnagzihxain"><a href="#wnagzihxain" class="headerlink" title="@wnagzihxain"></a>@wnagzihxain</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/316.html" target="_blank" rel="external">【独家】闲聊阿里加固（一）</a></li>
+</ul>
+<h3 id="doggy"><a href="#doggy" class="headerlink" title="@doggy"></a>@doggy</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/553.html" target="_blank" rel="external">浅谈json参数解析对waf绕过的影响</a></li>
+</ul>
+<h3 id="jax777"><a href="#jax777" class="headerlink" title="@jax777"></a>@jax777</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/557.html" target="_blank" rel="external">【独家】关于命令注入的测试payload生成</a></li>
+</ul>
+<h3 id="aqcxbom"><a href="#aqcxbom" class="headerlink" title="@aqcxbom"></a>@aqcxbom</h3><p><a href="https://xianzhi.aliyun.com/forum/read/611.html?fpage=7" target="_blank" rel="external">安卓Hook函数的复杂参数如何给定？</a></p>
+<h3 id="sanwenkit"><a href="#sanwenkit" class="headerlink" title="@sanwenkit"></a>@sanwenkit</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/768.html" target="_blank" rel="external">通过双重跳板漫游隔离内网</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/631.html" target="_blank" rel="external">【独家】ApachePOI的XXE漏洞本地调试（cve20165000）</a></li>
+</ul>
+<h3 id="熊猫正正"><a href="#熊猫正正" class="headerlink" title="@熊猫正正"></a>@熊猫正正</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/632.html" target="_blank" rel="external">【独家】Linux勒索样本KillDisk分析报告</a></li>
+</ul>
+<h3 id="phithon"><a href="#phithon" class="headerlink" title="@phithon"></a>@phithon</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1471.html" target="_blank" rel="external">从Pwnhub诞生聊Django安全编码</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/615.html" target="_blank" rel="external">【独家】Python格式化字符串漏洞（Django为例）</a></li>
+</ul>
+<h3 id="shuteer"><a href="#shuteer" class="headerlink" title="@shuteer"></a>@shuteer</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1488.html" target="_blank" rel="external">Metasploit、Powershell之AlwaysInstallElevated提权实战</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/742.html" target="_blank" rel="external">Metasploit驰骋内网直取域管首级</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/741.html" target="_blank" rel="external">Metasploit权限提升全剧终</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/735.html" target="_blank" rel="external">内网漫游之SOCKS代理大结局</a></li>
+</ul>
+<h3 id="evi1cg"><a href="#evi1cg" class="headerlink" title="@evi1cg"></a>@evi1cg</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/782.html" target="_blank" rel="external">隐匿的攻击之-Domain Fronting</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/769.html" target="_blank" rel="external">Exec OS Command Via MSSQL</a></li>
+</ul>
+<h3 id="阿松"><a href="#阿松" class="headerlink" title="@阿松"></a>@阿松</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/754.html" target="_blank" rel="external">浅谈Discuz插件代码安全（内附0day）</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/699.html" target="_blank" rel="external">Chrome中“自动填充”安全性研究</a></li>
+</ul>
+<h3 id="小憨"><a href="#小憨" class="headerlink" title="@小憨"></a>@小憨</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1487.html" target="_blank" rel="external">Phpcms_V9任意文件上传( N day …)</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1472.html" target="_blank" rel="external">Drupal 7.x Service模块SQLi &amp; RCE 漏洞分析及EXP</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1434.html" target="_blank" rel="external">基于MitM的RDP降级攻击</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/792.html" target="_blank" rel="external">ntfs－3g本地提权漏洞（CVE－2017－0358）</a></li>
+</ul>
+<h3 id="nmask"><a href="#nmask" class="headerlink" title="@nmask"></a>@nmask</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1609.html" target="_blank" rel="external">分享微软MS漏洞对应的KB号（2010-2017年漏洞）</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1502.html" target="_blank" rel="external">色情资源引发的百度网盘之战</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1496.html" target="_blank" rel="external">文件包含漏洞(绕过姿势)</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/789.html" target="_blank" rel="external">Struts2_045漏洞批量检测脚本</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/772.html" target="_blank" rel="external">Phantomjs爬过的那些坑</a></li>
+</ul>
+<h3 id="potato"><a href="#potato" class="headerlink" title="@potato"></a>@potato</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1508.html" target="_blank" rel="external">Phpcms_V9任意文件上传 漏洞分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1507.html" target="_blank" rel="external">phpcmsV9.5.8 后台两个低权限拿shell</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1490.html" target="_blank" rel="external">Phpcms_V9任意文件上传 -临时解决方案</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/796.html" target="_blank" rel="external">s2045漏洞分析</a></li>
+</ul>
+<h3 id="cryin"><a href="#cryin" class="headerlink" title="@cryin"></a>@cryin</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1532.html" target="_blank" rel="external">Magento2 CSRF导致任意文件上传漏洞简单分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1491.html" target="_blank" rel="external">phpcms v9.6.0 wap模块 SQL注入分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1414.html" target="_blank" rel="external">S2-046漏洞调试及初步分析</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1400.html" target="_blank" rel="external">Struts2漏洞利用原理及OGNL机制研究</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1399.html" target="_blank" rel="external">SDL软件安全设计初窥</a></li>
+</ul>
+<h3 id="backlion"><a href="#backlion" class="headerlink" title="@backlion"></a>@backlion</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1506.html" target="_blank" rel="external">Cobalt Strike搭建和使用以及bybass杀软</a></li>
+</ul>
+<h3 id="heeeeen"><a href="#heeeeen" class="headerlink" title="@heeeeen"></a>@heeeeen</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1570.html" target="_blank" rel="external">【独家】原创蓝牙App漏洞系列分析之一CVE20170601</a></li>
+</ul>
+<h3 id="blackwolf"><a href="#blackwolf" class="headerlink" title="@blackwolf"></a>@blackwolf</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1543.html" target="_blank" rel="external">CVE原创分析b2evolution目录遍历bypass之CVE20175539</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1542.html" target="_blank" rel="external">CVE原创分析初探CVE漏洞之CVE20175480</a></li>
+</ul>
+<h3 id="该隐"><a href="#该隐" class="headerlink" title="@该隐"></a>@该隐</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1594.html" target="_blank" rel="external">禅道9.1.2最新版免登陆SQL注入漏洞</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1540.html" target="_blank" rel="external">禅道权限控制逻辑漏洞</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1534.html" target="_blank" rel="external">禅道826版本一定条件getshell</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1533.html" target="_blank" rel="external">禅道826版本SQL注入，登录绕过</a></li>
+</ul>
+<h3 id="m0l1ce"><a href="#m0l1ce" class="headerlink" title="@m0l1ce"></a>@m0l1ce</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1557.html" target="_blank" rel="external">Wooyun All Bugs 10-16年所有漏洞（更新完成）</a></li>
+</ul>
+<h3 id="monika"><a href="#monika" class="headerlink" title="@monika"></a>@monika</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1462.html" target="_blank" rel="external">[[原创][巨人肩膀上的矮子]XSS挑战之旅—游戏通关攻略（更新至18关）</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/779.html" target="_blank" rel="external">一套实用的渗透测试岗位面试题</a></li>
+</ul>
+<h3 id="jkgh006"><a href="#jkgh006" class="headerlink" title="@jkgh006"></a>@jkgh006</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1519.html" target="_blank" rel="external">Java软WAF框架</a></li>
+</ul>
+<h3 id="泳少"><a href="#泳少" class="headerlink" title="@泳少"></a>@泳少</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/793.html" target="_blank" rel="external">【独家】我的企业安全推动</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/755.html" target="_blank" rel="external">【独家】一个有意思的APPLE XSS（CVE-2016-7762）的 分析与思考</a></li>
+</ul>
+<h3 id="tinyfisher"><a href="#tinyfisher" class="headerlink" title="@tinyfisher"></a>@tinyfisher</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1512.html" target="_blank" rel="external">NSA 0day ETERNALBLUE  漏洞利用</a></li>
+</ul>
+<h3 id="好的资源帖"><a href="#好的资源帖" class="headerlink" title="@好的资源帖"></a>@好的资源帖</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1524.html" target="_blank" rel="external">甲方企业整体安全建设思路及坑点</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/669.html" target="_blank" rel="external">安全书籍合集（PDF版）</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1548.html" target="_blank" rel="external">网络安全监控实战：深入理解事件检测与响应  PDF版本</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/671.html" target="_blank" rel="external">Wireshark数据包分析实战详解</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/597.html" target="_blank" rel="external">Apache Tomcat的安全相关东西</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/423.html" target="_blank" rel="external">SFDC黑无止境之业务逻辑“漏洞”PPT分享及其他</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1410.html" target="_blank" rel="external">Linux环境下常见漏洞利用技术</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/780.html" target="_blank" rel="external">密码找回和跨域的知识导图</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/358.html" target="_blank" rel="external">web相关的一些笔记</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1504.html" target="_blank" rel="external">移动APP安全与SDL</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1495.html" target="_blank" rel="external">SecWiki技术分享——漏洞挖掘之逻辑漏洞</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1526.html" target="_blank" rel="external">burpsuite收集到的录像、文档以及视频资料</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/510.html" target="_blank" rel="external">BurpSuite实战指南</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1702.html" target="_blank" rel="external">基线检查表&amp;安全加固规范（V1.1）</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1867.html" target="_blank" rel="external">攻击JavaWeb应用1-9[JavaWeb安全系列]</a>   </li>
+</ul>
+<h3 id="sm0nk"><a href="#sm0nk" class="headerlink" title="@sm0nk"></a>@sm0nk</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1521.html" target="_blank" rel="external">解读2017OWASPTop10漏洞体系含接口安全</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1655.html" target="_blank" rel="external">黑客入侵应急分析手工排查</a></li>
+</ul>
+<h3 id="季雨林"><a href="#季雨林" class="headerlink" title="@季雨林"></a>@季雨林</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/775.html" target="_blank" rel="external">互联网定位技术小谈</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1421.html" target="_blank" rel="external">互联网定位技术-wifi定位介绍</a></li>
+</ul>
+<h3 id="simeon"><a href="#simeon" class="headerlink" title="@simeon"></a>@simeon</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1629.html" target="_blank" rel="external">信息收集之SVN源代码社工获取及渗透实战</a></li>
+</ul>
+<h3 id="茶码古刀"><a href="#茶码古刀" class="headerlink" title="@茶码古刀"></a>@茶码古刀</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1645.html" target="_blank" rel="external">PR的盛宴之下，不能缺席的是技术的纯真——WannaCry事件之反思</a></li>
+</ul>
+<h3 id="sevck"><a href="#sevck" class="headerlink" title="@sevck"></a>@sevck</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/790.html" target="_blank" rel="external">一条命令引发的思考</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/664.html" target="_blank" rel="external">老洞新姿势，记一次漏洞挖掘和利用(PHPMailer RCE)</a></li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/359.html" target="_blank" rel="external">浏览器中一些好玩的洞(IE/Safari)</a></li>
+</ul>
+<h3 id="jeary"><a href="#jeary" class="headerlink" title="@jeary"></a>@jeary</h3><ul>
+<li><a href="https://xianzhi.aliyun.com/forum/read/1723.html" target="_blank" rel="external">Web日志安全分析浅谈</a><br>  @紫霞仙子</li>
+<li><a href="https://xianzhi.aliyun.com/forum/read/384.html" target="_blank" rel="external">[福利贴] 精华帖或长期活跃送永久cloudeye账号 [2017-06-15更新]</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【转】先知安全技术社区 渗透测试 经典合集&lt;/p&gt;
+&lt;h3 id=&quot;从容-——WafBypass之道&quot;&gt;&lt;a href=&quot;#从容-——WafBypass之道&quot; class=&quot;headerlink&quot; title=&quot;@从容 ——WafBypass之道&quot;&gt;&lt;/a&gt;@从容 ——WafBypass之道&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://xianzhi.aliyun.com/forum/read/349.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;【独家连载】我的WafBypass之道（SQL注入篇）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://xianzhi.aliyun.com/forum/read/458.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;【独家连载】我的WafBypass之道（upload篇）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://xianzhi.aliyun.com/forum/read/714.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;【独家连载】我的WafBypass之道（Misc篇）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="渗透测试" scheme="https://jfsec.org/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+    
+      <category term="pen-test" scheme="https://jfsec.org/tags/pen-test/"/>
+    
+  </entry>
   
   <entry>
     <title>基于业务流程的Web访问日志分析</title>

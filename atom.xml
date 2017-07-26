@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jfsec.org/"/>
-  <updated>2017-07-16T15:00:14.000Z</updated>
+  <updated>2017-07-26T09:00:23.000Z</updated>
   <id>https://jfsec.org/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android Hook 之 Xposed</title>
+    <link href="https://jfsec.org/2017/07/25/xposed-framework/"/>
+    <id>https://jfsec.org/2017/07/25/xposed-framework/</id>
+    <published>2017-07-25T15:37:18.000Z</published>
+    <updated>2017-07-26T09:00:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>昨天找到了闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么了？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。</p>
+<a id="more"></a>
+<h2 id="刷机-CM12-1"><a href="#刷机-CM12-1" class="headerlink" title="刷机 CM12.1"></a>刷机 CM12.1</h2><p>氢OS2.0，可能是做了限制，一开始刷最新的TWRP后，发现装不上，后来在一加论坛上下载一个专用的twrp才管用，接着再安装最新twrp。</p>
+<p>刷机教程如下<a href="https://forum.xda-developers.com/showthread.php?t=2788632" target="_blank" rel="external">OnePlus One - How to Unlock Bootloader, Install Custom Recovery and Root</a></p>
+<p>一开始通过twrp安装了CM13，担心版本搞了兼容性不好，又折腾半天安装CM12.1，通过fastboot刷机安装。</p>
+<h2 id="Nethunter-安装"><a href="#Nethunter-安装" class="headerlink" title="Nethunter 安装"></a>Nethunter 安装</h2><p>下载nethunter ，拷贝至手机<br>进入recovery，通过twrp安装</p>
+<h2 id="Xposed-安装"><a href="#Xposed-安装" class="headerlink" title="Xposed 安装"></a>Xposed 安装</h2><p>根据Android 版本及手机型号搜索是否兼容，提前做好备份，否则可能变成板砖。<br>安装说明<a href="http://repo.xposed.info/module/de.robv.android.xposed.installer" target="_blank" rel="external">Xposed Installer</a></p>
+<h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><p>一加手机1，Xposed 所需版本如下：</p>
+<ul>
+<li><code>XposedInstaller_3.1.1.apk</code></li>
+<li><code>SDK22 is Android 5.1</code>  arm</li>
+</ul>
+<h3 id="Xposed-模块"><a href="#Xposed-模块" class="headerlink" title="Xposed 模块"></a>Xposed 模块</h3><h4 id="模拟GPS位置"><a href="#模拟GPS位置" class="headerlink" title="模拟GPS位置"></a>模拟GPS位置</h4><p>模块名称：<code>lataclysm</code><br>用途：顾名思义<br>使用：先设置位置，再打开地图软件或其他使用位置服务的APP。</p>
+<h4 id="Instagram图片下载"><a href="#Instagram图片下载" class="headerlink" title="Instagram图片下载"></a>Instagram图片下载</h4><p>模块名称：<code>XInsta</code><br>用途：下载图片<br>使用：点击Instagram，图片右上角<code>more</code>按钮，选择下载即可</p>
+<h4 id="动态分析工具-Inspeckage"><a href="#动态分析工具-Inspeckage" class="headerlink" title="动态分析工具 Inspeckage"></a>动态分析工具 Inspeckage</h4><p>模块名称：<code>Inspeckage</code><br>用途：动态分析App运行行为，包括加密行为、Hash值、SQLite操作、HTTP访问等。</p>
+<p>使用步骤：</p>
+<ul>
+<li><p>在手机上打开<a href="https://github.com/ac-pm/Inspeckage" target="_blank" rel="external">Inspeckage</a>，选择目标App<br><img src="http://opmk280rf.bkt.clouddn.com/79de1c986240bf35158a2f030b6dc6ef.jpg" alt=""></p>
+</li>
+<li><p>使用浏览器访问，安全起见监听服务在本地127.0.0.1，使用adb forward 转发</p>
+</li>
+<li><p>在浏览器设置页面中，<code>Start App</code><br><img src="http://opmk280rf.bkt.clouddn.com/a9baca46782af4e666349e138f03c9eb.jpg" alt=""></p>
+</li>
+<li><p>查看动态运行信息</p>
+</li>
+</ul>
+<p>用例：测试App，加密方式使用<code>DES</code>，密钥是<code>12345678</code></p>
+<p><img src="http://opmk280rf.bkt.clouddn.com/54b770ea598bff31166bd9c0280cf87d.jpg" alt=""></p>
+<p>用例：测试App2，加密使用了AES</p>
+<p><img src="http://opmk280rf.bkt.clouddn.com/fa0347ae918d20df3050bf9a8a6b3b61.jpg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;昨天找到了闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么了？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="https://jfsec.org/categories/Android/"/>
+    
+    
+      <category term="Hook" scheme="https://jfsec.org/tags/Hook/"/>
+    
+  </entry>
   
   <entry>
     <title>【转】先知安全技术社区 渗透测试 经典合集</title>

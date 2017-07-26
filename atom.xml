@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jfsec.org/"/>
-  <updated>2017-07-26T09:00:23.000Z</updated>
+  <updated>2017-07-26T12:02:39.000Z</updated>
   <id>https://jfsec.org/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://jfsec.org/2017/07/25/xposed-framework/"/>
     <id>https://jfsec.org/2017/07/25/xposed-framework/</id>
     <published>2017-07-25T15:37:18.000Z</published>
-    <updated>2017-07-26T09:00:23.000Z</updated>
+    <updated>2017-07-26T12:02:39.000Z</updated>
     
-    <content type="html"><![CDATA[<p>昨天找到了闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么了？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。</p>
+    <content type="html"><![CDATA[<p>昨天找东西时偶然找到了闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么了？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。</p>
 <a id="more"></a>
 <h2 id="刷机-CM12-1"><a href="#刷机-CM12-1" class="headerlink" title="刷机 CM12.1"></a>刷机 CM12.1</h2><p>氢OS2.0，可能是做了限制，一开始刷最新的TWRP后，发现装不上，后来在一加论坛上下载一个专用的twrp才管用，接着再安装最新twrp。</p>
 <p>刷机教程如下<a href="https://forum.xda-developers.com/showthread.php?t=2788632" target="_blank" rel="external">OnePlus One - How to Unlock Bootloader, Install Custom Recovery and Root</a></p>
@@ -56,7 +56,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;昨天找到了闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么了？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。&lt;/p&gt;
+      &lt;p&gt;昨天找东西时偶然找到了闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么了？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。&lt;/p&gt;
     
     </summary>
     
@@ -846,11 +846,11 @@
       <category term="技术规范" scheme="https://jfsec.org/categories/%E5%AE%89%E5%85%A8%E9%9C%80%E6%B1%82/%E6%8A%80%E6%9C%AF%E8%A7%84%E8%8C%83/"/>
     
     
-      <category term="Web" scheme="https://jfsec.org/tags/Web/"/>
-    
       <category term="Android" scheme="https://jfsec.org/tags/Android/"/>
     
       <category term="iOS" scheme="https://jfsec.org/tags/iOS/"/>
+    
+      <category term="Web" scheme="https://jfsec.org/tags/Web/"/>
     
       <category term="标准" scheme="https://jfsec.org/tags/%E6%A0%87%E5%87%86/"/>
     

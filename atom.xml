@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://jfsec.org/"/>
-  <updated>2017-07-26T12:02:39.000Z</updated>
+  <updated>2017-07-27T01:22:55.000Z</updated>
   <id>https://jfsec.org/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="https://jfsec.org/2017/07/25/xposed-framework/"/>
     <id>https://jfsec.org/2017/07/25/xposed-framework/</id>
     <published>2017-07-25T15:37:18.000Z</published>
-    <updated>2017-07-26T12:02:39.000Z</updated>
+    <updated>2017-07-27T01:22:55.000Z</updated>
     
-    <content type="html"><![CDATA[<p>昨天找东西时偶然找到了闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么了？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。</p>
+    <content type="html"><![CDATA[<p>昨天找东西时偶然发现闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么呢？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。</p>
 <a id="more"></a>
 <h2 id="刷机-CM12-1"><a href="#刷机-CM12-1" class="headerlink" title="刷机 CM12.1"></a>刷机 CM12.1</h2><p>氢OS2.0，可能是做了限制，一开始刷最新的TWRP后，发现装不上，后来在一加论坛上下载一个专用的twrp才管用，接着再安装最新twrp。</p>
 <p>刷机教程如下<a href="https://forum.xda-developers.com/showthread.php?t=2788632" target="_blank" rel="external">OnePlus One - How to Unlock Bootloader, Install Custom Recovery and Root</a></p>
@@ -34,10 +34,9 @@
 <li><code>XposedInstaller_3.1.1.apk</code></li>
 <li><code>SDK22 is Android 5.1</code>  arm</li>
 </ul>
-<h3 id="Xposed-模块"><a href="#Xposed-模块" class="headerlink" title="Xposed 模块"></a>Xposed 模块</h3><h4 id="模拟GPS位置"><a href="#模拟GPS位置" class="headerlink" title="模拟GPS位置"></a>模拟GPS位置</h4><p>模块名称：<code>lataclysm</code><br>用途：顾名思义<br>使用：先设置位置，再打开地图软件或其他使用位置服务的APP。</p>
-<h4 id="Instagram图片下载"><a href="#Instagram图片下载" class="headerlink" title="Instagram图片下载"></a>Instagram图片下载</h4><p>模块名称：<code>XInsta</code><br>用途：下载图片<br>使用：点击Instagram，图片右上角<code>more</code>按钮，选择下载即可</p>
-<h4 id="动态分析工具-Inspeckage"><a href="#动态分析工具-Inspeckage" class="headerlink" title="动态分析工具 Inspeckage"></a>动态分析工具 Inspeckage</h4><p>模块名称：<code>Inspeckage</code><br>用途：动态分析App运行行为，包括加密行为、Hash值、SQLite操作、HTTP访问等。</p>
-<p>使用步骤：</p>
+<h3 id="Xposed-模块"><a href="#Xposed-模块" class="headerlink" title="Xposed 模块"></a>Xposed 模块</h3><h4 id="模拟GPS位置"><a href="#模拟GPS位置" class="headerlink" title="模拟GPS位置"></a>模拟GPS位置</h4><p>名称：<code>lataclysm</code><br>用途：顾名思义<br>使用：先设置位置，再打开地图软件或其他使用位置服务的APP。</p>
+<h4 id="Instagram图片下载"><a href="#Instagram图片下载" class="headerlink" title="Instagram图片下载"></a>Instagram图片下载</h4><p>名称：<code>XInsta</code><br>用途：下载图片<br>使用：点击Instagram，图片右上角<code>more</code>按钮，选择下载即可</p>
+<h4 id="动态分析工具-Inspeckage"><a href="#动态分析工具-Inspeckage" class="headerlink" title="动态分析工具 Inspeckage"></a>动态分析工具 Inspeckage</h4><p>名称：<code>Inspeckage</code><br>用途：动态分析App运行行为，包括加密行为、Hash值、SQLite操作、HTTP访问等。<br>使用：</p>
 <ul>
 <li><p>在手机上打开<a href="https://github.com/ac-pm/Inspeckage" target="_blank" rel="external">Inspeckage</a>，选择目标App<br><img src="http://opmk280rf.bkt.clouddn.com/79de1c986240bf35158a2f030b6dc6ef.jpg" alt=""></p>
 </li>
@@ -48,15 +47,13 @@
 <li><p>查看动态运行信息</p>
 </li>
 </ul>
-<p>用例：测试App，加密方式使用<code>DES</code>，密钥是<code>12345678</code></p>
-<p><img src="http://opmk280rf.bkt.clouddn.com/54b770ea598bff31166bd9c0280cf87d.jpg" alt=""></p>
-<p>用例：测试App2，加密使用了AES</p>
-<p><img src="http://opmk280rf.bkt.clouddn.com/fa0347ae918d20df3050bf9a8a6b3b61.jpg" alt=""></p>
+<p>*用例：测试App，加密方式使用<code>DES</code>，密钥是<code>12345678</code><br><img src="http://opmk280rf.bkt.clouddn.com/54b770ea598bff31166bd9c0280cf87d.jpg" alt=""></p>
+<p>*用例：测试App2，加密使用了AES<br><img src="http://opmk280rf.bkt.clouddn.com/fa0347ae918d20df3050bf9a8a6b3b61.jpg" alt=""></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;昨天找东西时偶然找到了闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么了？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。&lt;/p&gt;
+      &lt;p&gt;昨天找东西时偶然发现闲置很久的一加手机（OnePlus one），原来装过Nethunter，玩过一段时间，后来就卸载了，装了氢OS2.0，能做点什么呢？闲着有点浪费，准备再安装Nethunter ，再玩玩Xposed。&lt;/p&gt;
     
     </summary>
     
@@ -289,27 +286,28 @@
     <link href="https://jfsec.org/2017/07/13/github-code-search/"/>
     <id>https://jfsec.org/2017/07/13/github-code-search/</id>
     <published>2017-07-13T12:54:11.000Z</published>
-    <updated>2017-07-26T15:29:30.000Z</updated>
+    <updated>2017-07-27T01:20:20.000Z</updated>
     
     <content type="html"><![CDATA[<p>今日，一则新闻很奇葩，锤子员工在GitHub上提交的文件被发现竟然包含坚果Pro的激活数量。<a href="http://www.cnbeta.com/articles/tech/631127.htm" target="_blank" rel="external">新闻链接:锤子员工在GitHub泄密坚果Pro真实销量</a></p>
-<p>员工在github 上传敏感信息对组织的数据代码防泄露工作来说是个噩梦，如何及时有效进行监控，是组织必备的安全措施。</p>
+<p>员工在github 上传敏感信息对组织的数据代码防泄漏工作来说是个噩梦，如何及时有效进行监控，是组织必备的安全措施之一。</p>
 <a id="more"></a>
-<p>目前国内有好几家公司提供github敏感信息监控服务，其中携程安全部免费提供了github scan云监控服务，只要是甲方企业通过申请后，就可以使用，使用有限制，只能监控10个关键字。这里介绍一款开源监控工具GitMiner，GitMiner是一款轻量级的github监控工具，<a href="https://github.com/UnkL4b/GitMiner" target="_blank" rel="external">地址</a></p>
-<h3 id="安装，比较简单："><a href="#安装，比较简单：" class="headerlink" title="安装，比较简单："></a>安装，比较简单：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git clone http://github.com/danilovazb/GitMiner</div><div class="line">pip install -r requirements.txt</div></pre></td></tr></table></figure>
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>需要用户登陆github网站的token，方法是使用chrome 查看<code>user_session</code>，我是保存在 git_miner.py 中，也可以每次运行时指定。</p>
+<p>目前国内有好几家公司提供github敏感信息监控服务，其中携程安全部免费提供了github scan云监控服务，只要是甲方企业通过申请后，就可以使用，使用有限制，只能监控10个关键字。这里介绍一款开源监控工具GitMiner，GitMiner是一款轻量级的github监控工具，<a href="https://github.com/UnkL4b/GitMiner" target="_blank" rel="external">Github 地址</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git clone http://github.com/danilovazb/GitMiner</div><div class="line">pip install -r requirements.txt</div></pre></td></tr></table></figure>
+<h3 id="使用准备"><a href="#使用准备" class="headerlink" title="使用准备"></a>使用准备</h3><p>需要用户登陆github网站的token，方法是使用chrome 查看<code>user_session</code>，我是保存在 git_miner.py 中，也可以每次运行时指定。</p>
 <p><img src="http://opmk280rf.bkt.clouddn.com/2296ccbed63e21c9f8f2a71ff06ff675.jpg" alt=""></p>
-<h4 id="查看etc-shadow-结果情看底部录像"><a href="#查看etc-shadow-结果情看底部录像" class="headerlink" title="查看etc shadow  结果情看底部录像"></a>查看etc shadow  结果情看底部录像</h4><p><strong>执行</strong><br><code>python git_miner.py --query &#39;filename:shadow path:etc&#39; -m root</code></p>
-<h4 id="wordpress"><a href="#wordpress" class="headerlink" title="wordpress"></a>wordpress</h4><p><strong>执行</strong><br><code>python git_miner.py -q &#39;filename:wp-config extension:php FTP_HOST in:file &#39; -m wordpress -o result.txt</code></p>
-<h4 id="joomla"><a href="#joomla" class="headerlink" title="joomla"></a>joomla</h4><p><strong>执行</strong><br><code>python git_miner.py --query &#39;filename:configuration extension:php &quot;public password&quot; in:file&#39; -m joomla</code></p>
-<h4 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h4><p><strong>编辑</strong> <code>config\parse.json</code> 添加一个模块</p>
+<h3 id="示例-查看etc-shadow"><a href="#示例-查看etc-shadow" class="headerlink" title="示例:查看etc shadow"></a>示例:查看etc shadow</h3><p><strong>执行</strong><br><code>python git_miner.py --query &#39;filename:shadow path:etc&#39; -m root</code></p>
+<p> <em>结果看请本文底部录像</em></p>
+<h3 id="示例-wordpress"><a href="#示例-wordpress" class="headerlink" title="示例: wordpress"></a>示例: wordpress</h3><p><strong>执行</strong><br><code>python git_miner.py -q &#39;filename:wp-config extension:php FTP_HOST in:file &#39; -m wordpress -o result.txt</code></p>
+<h3 id="示例-joomla"><a href="#示例-joomla" class="headerlink" title="示例: joomla"></a>示例: joomla</h3><p><strong>执行</strong><br><code>python git_miner.py --query &#39;filename:configuration extension:php &quot;public password&quot; in:file&#39; -m joomla</code></p>
+<h3 id="示例-自定义"><a href="#示例-自定义" class="headerlink" title="示例: 自定义"></a>示例: 自定义</h3><p><strong>编辑</strong> <code>config\parse.json</code> 添加一个模块</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&quot;my&quot;:&#123;</div><div class="line">  &quot;contains&quot;:&quot;cpic.com&quot;,</div><div class="line">  &quot;parameters&quot;:&#123;</div><div class="line">     &quot;param1&quot;:&quot;password&quot;,</div><div class="line">  &#125;,</div><div class="line">  &quot;splitparam&quot;:&quot; &quot;,</div><div class="line">  &quot;splitorder&quot;:&#123;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>执行</strong><br><code>python git_miner.py -q &#39;cpic.com password language:java&#39; -m my</code></p>
-<h2 id="观看演示录像"><a href="#观看演示录像" class="headerlink" title="观看演示录像"></a><a href="https://asciinema.org/a/afnligg7u79vzkdrgdyGdFbDI" target="_blank" rel="external">观看演示录像</a></h2>]]></content>
+<h3 id="观看演示录像"><a href="#观看演示录像" class="headerlink" title="观看演示录像"></a><a href="https://asciinema.org/a/afnligg7u79vzkdrgdyGdFbDI" target="_blank" rel="external">观看演示录像</a></h3>]]></content>
     
     <summary type="html">
     
       &lt;p&gt;今日，一则新闻很奇葩，锤子员工在GitHub上提交的文件被发现竟然包含坚果Pro的激活数量。&lt;a href=&quot;http://www.cnbeta.com/articles/tech/631127.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;新闻链接:锤子员工在GitHub泄密坚果Pro真实销量&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;员工在github 上传敏感信息对组织的数据代码防泄露工作来说是个噩梦，如何及时有效进行监控，是组织必备的安全措施。&lt;/p&gt;
+&lt;p&gt;员工在github 上传敏感信息对组织的数据代码防泄漏工作来说是个噩梦，如何及时有效进行监控，是组织必备的安全措施之一。&lt;/p&gt;
     
     </summary>
     
@@ -882,11 +880,11 @@
       <category term="技术规范" scheme="https://jfsec.org/categories/%E5%AE%89%E5%85%A8%E9%9C%80%E6%B1%82/%E6%8A%80%E6%9C%AF%E8%A7%84%E8%8C%83/"/>
     
     
-      <category term="Android" scheme="https://jfsec.org/tags/Android/"/>
+      <category term="Web" scheme="https://jfsec.org/tags/Web/"/>
     
       <category term="iOS" scheme="https://jfsec.org/tags/iOS/"/>
     
-      <category term="Web" scheme="https://jfsec.org/tags/Web/"/>
+      <category term="Android" scheme="https://jfsec.org/tags/Android/"/>
     
       <category term="标准" scheme="https://jfsec.org/tags/%E6%A0%87%E5%87%86/"/>
     

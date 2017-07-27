@@ -882,9 +882,9 @@
     
       <category term="Web" scheme="https://jfsec.org/tags/Web/"/>
     
-      <category term="iOS" scheme="https://jfsec.org/tags/iOS/"/>
-    
       <category term="Android" scheme="https://jfsec.org/tags/Android/"/>
+    
+      <category term="iOS" scheme="https://jfsec.org/tags/iOS/"/>
     
       <category term="标准" scheme="https://jfsec.org/tags/%E6%A0%87%E5%87%86/"/>
     
